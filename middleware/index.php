@@ -29,11 +29,13 @@ if($_GET['curl']){
    switch ($curl) {
     case 'connexion':
         $admin = new Admins();
-        $admin = $admin->getOne(array(
-            "phone" => _fillPhoneNumber($_POST['phone']),
-            "password" => md5($_POST['password'])
-        ));
-        echo($admin->print());
+        $admin = $admin->getOne(
+                array(
+                "phone" => _fillPhoneNumber($_POST['phone']),
+                "password" => md5($_POST['password'])
+            )
+        );
+        
         break;
     
     default:

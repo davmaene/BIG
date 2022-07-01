@@ -106,7 +106,7 @@
 
                 foreach ($clauses as $key => $value) {
                     ++$nblines;
-                    $value_ = is_numeric($value) ? $value : "'".$value."'";
+                    $value_ = is_numeric($value) && strlen($value) < 3 ? $value : "'".$value."'";
                     $cls .= ((int) $nblines === count($clauses)) ? " `$key` = $value_" : " `$key` = $value_ AND ";            
                 }
                 $query .= $cls;
@@ -137,7 +137,7 @@
             $query = "SELECT * FROM `$nclassname` WHERE ";
             foreach ($clauses as $key => $value) {
                 ++$nblines;
-                $value_ = is_numeric($value) ? $value : "'".$value."'";
+                $value_ = is_numeric($value) && strlen($value) < 3 ? $value : "'".$value."'";
                 $query .= ((int) $nblines === count($clauses)) ? " `$key` = $value_" : " `$key` = $value_ AND ";            
             }
             $query .= " LIMIT 1";
@@ -190,7 +190,7 @@
                             $thereisjointure = true;
                             foreach ($va['clause'] as $key => $value___) {
                                 ++$nblines;
-                                $value_ = is_numeric($value___) ? $value___ : "'".$value___."'";
+                                $value_ = is_numeric($value___) && strlen($value) < 3 ? $value___ : "'".$value___."'";
                                 $cl .= ((int) $nblines === count($va['clause'])) ? "$joiTable.$key = $value_" : "$joiTable.$key = $value_ AND "; 
                                 // " $joiTable.$key = $value_ ";
                             }
