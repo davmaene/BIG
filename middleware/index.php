@@ -37,9 +37,9 @@ if($_GET['curl']){
             )
         );
 
-        $a = (array) $admin;
-        if($a['status'] === 200){
-            if(1 && count($a['body']) > 0) echo($admin->print());
+        $a = (array) $admin->body;
+        if($admin->status === 200){
+            if(1 && count($a) > 0) echo($admin->print());
             else{
                 $res = new Response(404, "No Item found !");
                 echo($res->print());
