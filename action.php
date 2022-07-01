@@ -1,8 +1,8 @@
 <?php 
-
+    session_start();
     include_once('./middleware/pont.php');
     $pgs = scandir('pages/');
-    $id = (isset($_SESSION['ident-me'])) ? $_SESSION['ident-me'] : null;
+    $id = (isset($_SESSION['_bigUser'])) ? $_SESSION['ident-me'] : null;
     $tkn = (isset($_SESSION['token'])) ? $_SESSION['token'] : null;
     if($id === null && $tkn === null) header('location: ./pages/login/');
     if($id !== null && $tkn === null) header('location: sessionreset/');

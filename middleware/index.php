@@ -13,10 +13,12 @@ function _listRubriques($where = null){
     $rbqs = $rbqs->getAll($where ? $where : null);
     return $rbqs;
 }
+
 function _numDaysInMonth($month){
     $number = cal_days_in_month(CAL_GREGORIAN, $month, date("Y")); 
     return $number;
 }
+
 function _fillPhoneNumber($string){
     if(strlen($string) === 9) return $string = "0".$string;
     if(strlen($string) === 10) return $string;
@@ -40,8 +42,10 @@ if($_GET['curl']){
         try {
             $a = (array) $admin->body;
             if($admin->status === 200){
-                if(1 && count($a) > 0) echo($admin->print());
-                else{
+                if(1 && count($a) > 0){
+                    $_SESSION['_bigUser'] = base64_encode(json_encode($a));
+                    echo($admin->print());
+                } else {
                     $res = new Response(404, "No Item found !");
                     echo($res->print());
                 }
