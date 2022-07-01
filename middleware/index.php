@@ -37,15 +37,20 @@ if($_GET['curl']){
             )
         );
 
-        $a = (array) $admin->body;
-        if($admin->status === 200){
-            if(1 && count($a) > 0) echo($admin->print());
-            else{
-                $res = new Response(404, "No Item found !");
+        try {
+            $a = (array) $admin->body;
+            if($admin->status === 200){
+                if(1 && count($a) > 0) echo($admin->print());
+                else{
+                    $res = new Response(404, "No Item found !");
+                    echo($res->print());
+                }
+            }else{
+                $res = new Response(500, "Something went wrong !");
                 echo($res->print());
             }
-        }else{
-            $res = new Response(500, "Something went wrong !");
+        } catch (\Throwable $th) {
+            $res = new Response(500, $th);
             echo($res->print());
         }
         break;
