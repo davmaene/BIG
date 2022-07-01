@@ -4,6 +4,7 @@
         public $nom;
         public $postnom;
         public $phone;
+        public $password;
         
         public function __constructor($id, $nom, $postnom, $password, $phone){
             $this->id = $id;
@@ -13,4 +14,4 @@
             $this->phone = $phone;
         }
     }
-?
+?>

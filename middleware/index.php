@@ -8,7 +8,6 @@ include_once("models/cl.user.php");
 include_once("models/cl.rubriques.php");
 include_once("models/cl.admin.php");
 
-
 function _listRubriques($where = null){
     $rbqs = new Rubriques();
     $rbqs = $rbqs->getAll($where ? $where : null);
@@ -18,13 +17,22 @@ function _numDaysInMonth($month){
     $number = cal_days_in_month(CAL_GREGORIAN, $month, date("Y")); 
     return $number;
 }
+function _fillPhoneNumber($string){
+    if(strlen($string) === 9) return $string = "0".$string;
+    if(strlen($string) === 10) return $string;
+    if(strlen($string) > 10 && strlen($string) <= 14) return $string = substr($string, 4);
+    else return "()()()()()()()";
+}
 
 if($_GET['curl']){
     $curl = $_GET['curl'];
    switch ($curl) {
     case 'connexion':
         $admin = new Admins();
-        $admin = $admin->getAll();
+        $admin = $admin->getOne(array(
+            "phone" => _fillPhoneNumber($_POST['phone']),
+            "password" => md5($_POST['password'])
+        ));
         echo($admin->print());
         break;
     
@@ -38,4 +46,4 @@ if($_GET['curl']){
     echo($res->print());
 }
 
-?>
+?>
