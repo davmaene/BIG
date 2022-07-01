@@ -36,9 +36,14 @@ if($_GET['curl']){
                 "password" => md5($_POST['password'])
             )
         );
+
         $a = (array) $admin;
-        if($a['status'] === 200 && count($a['body']) > 0){
-            
+        if($a['status'] === 200){
+            if(1 && count($a['body']) > 0) echo($admin->print());
+            else{
+                $res = new Response(404, "No Item found !");
+                echo($res->print());
+            }
         }else{
             $res = new Response(500, "Something went wrong !");
             echo($res->print());
