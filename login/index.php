@@ -12,10 +12,11 @@
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
-  <link href="../../assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
-  <link id="pagestyle" href="../../assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
-  <script src="../../assets/jquery/jq.1.js" ></script>
+  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/js/plugins/toastr/toastr.css">
+  <script src="../assets/jquery/jq.1.js" ></script>
 </head>
 
 <body class="bg-gray-200">
@@ -75,7 +76,7 @@
     </div>
   </div>
   <main class="main-content  mt-0">
-    <div class="page-header align-items-start min-vh-100" style="background-image: url('../../assets/img/photo-1497294815431-9365093b7331.jpeg');">
+    <div class="page-header align-items-start min-vh-100" style="background-image: url('../assets/img/photo-1497294815431-9365093b7331.jpeg');">
       <span class="mask bg-gradient-dark opacity-6"></span>
       <div class="container my-auto">
         <div class="row">
@@ -133,15 +134,9 @@
           </div>
         </div>
       </div>
-      <?php include("../../components/footer.php") ?>
+      <?php include("../components/footer.php") ?>
     </div>
   </main>
-  <!--   Core JS Files   -->
-  <script src="../../assets/js/core/popper.min.js"></script>
-  <script src="../../assets/js/core/bootstrap.min.js"></script>
-  <script src="../../assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="../../assets/js/material-dashboard.js"></script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -151,10 +146,12 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
-  <script src="../../assets/js/core/popper.min.js"></script>
-  <script src="../../assets/js/core/bootstrap.min.js"></script>
-  <script src="../../assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/toastr/toastr.min.js"></script>
+  <script src="../assets/js/material-dashboard.js"></script>
   <script>
     $(document).ready(() => {
       const ldr = document.createElement("span");
@@ -167,12 +164,28 @@
         $("#btn-loader").append(ldr)
         $.ajax({
           method: "POST",
-          url: `../../middleware/index.php?curl=connexion`,
+          url: `../middleware/index.php?curl=connexion`,
           data: $(e.target).serialize()
         })
         .done(res => {
           $("#loader-sp").remove()
-          console.log("Responses => ",res);
+          try {
+            const s = JSON.parse(res);
+            switch (s['status']) {
+              case 200:
+                toastr.success('Connexion effectuée avec succès !');
+                window.location.replace("../");
+                break;
+              case 404:
+                toastr.error('Les informations entrées sont erronées !');
+                break;
+              default:
+                toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
+                break;
+            }
+          } catch (error) {
+            toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
+          }
         })
         .fail(err => {
           $("#loader-sp").remove()

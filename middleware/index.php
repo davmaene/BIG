@@ -1,4 +1,5 @@
 <?php 
+// session_start();
 date_default_timezone_set('UTC');
 require_once("pont.php"); // don't delete or modify this line
 // ----------------------------------------------------------
