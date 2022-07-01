@@ -27,6 +27,7 @@ function _fillPhoneNumber($string){
 if($_GET['curl']){
     $curl = $_GET['curl'];
    switch ($curl) {
+
     case 'connexion':
         $admin = new Admins();
         $admin = $admin->getOne(
@@ -35,7 +36,13 @@ if($_GET['curl']){
                 "password" => md5($_POST['password'])
             )
         );
-        
+        $a = (array) $admin;
+        if($a['status'] === 200 && count($a['body']) > 0){
+            
+        }else{
+            $res = new Response(500, "Something went wrong !");
+            echo($res->print());
+        }
         break;
     
     default:
@@ -43,6 +50,7 @@ if($_GET['curl']){
         echo($res->print());
         break;
    }
+
 }else{
     $res = new Response(404, "Aucune route trouvée avec comme clé ");
     echo($res->print());
