@@ -44,6 +44,7 @@ if($_GET['curl']){
             if($admin->status === 200){
                 if(1 && count($a) > 0){
                     $_SESSION['_bigUser'] = base64_encode(json_encode($a));
+                    $_SESSION['token'] = base64_encode($a['id']);
                     echo($admin->print());
                 } else {
                     $res = new Response(404, "No Item found !");
