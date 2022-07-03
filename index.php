@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.css">
   <!-- CSS Files -->
   <script src="./assets/js/plugins/toastr/toastr.min.js"></script>
+  <script src="./assets/jquery/jquery-3.5.1.min.js"></script>
   <script src="./assets/js/plugins/Toasts.js"></script>
   <link rel="stylesheet" href="./assets/js/plugins/toastr/toastr.css">
   <link id="pagestyle" href="./assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />

@@ -11,39 +11,92 @@
                 </div>
               </div>
               <div class="card-body">
-                <form role="form" class="text-start" id="form-connexion">
-                <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Nom</label>
-                    <input type="text" name="nom" class="form-control" required>
-                  </div>
-                  <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Postnom</label>
-                    <input type="text" name="postnom" class="form-control" required>
-                  </div>
-                  <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Numero NN ( Carte d'electeur )</label>
-                    <input type="text" name="etatcivil" class="form-control" required>
-                  </div>
-                  <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Numero de téléphone</label>
-                    <input type="text" name="phone" class="form-control" required>
-                  </div>
-                  <div class="input-group input-group-outline mb-3">
-                    <label class="form-label">Mot de passe</label>
-                    <input type="password" name="password" class="form-control" required>
-                  </div>
-                  <div class="text-center">
-                    <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" id="btn-loader">
-                      <span>Connexion</span>
-                      <!-- <span class="spinner-border spinner-border-sm"></span> -->
-                    </button>
-                  </div>
+                <form role="form" class="text-start" id="form-addmember">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-check form-switch d-flex align-items-center mb-3">
+                                <input class="form-check-input" type="checkbox" id="rememberMe" name="checked" is-checked="false">
+                                <label class="form-check-label mb-0 ms-2" for="rememberMe">Un compte double</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <strong>Membre 1</strong>
+                                </div>
+                                <div class="col-lg-6">
+                                    <strong>Membre 1</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12" id="member-1">
+                            <div class="input-group input-group-outline my-3">
+                                <label class="form-label">Nom</label>
+                                <input type="text" name="nom_1" class="form-control" required>
+                            </div>
+                            <div class="input-group input-group-outline my-3">
+                                <label class="form-label">Postnom</label>
+                                <input type="text" name="postnom_1" class="form-control" required>
+                            </div>
+                            <div class="input-group input-group-outline my-3">
+                                <label class="form-label">Numero NN ( Carte d'electeur )</label>
+                                <input type="text" name="nn_1" class="form-control" required>
+                            </div>
+                            <div class="input-group input-group-outline my-3">
+                                <label class="form-label">Numero de téléphone</label>
+                                <input type="text" name="phone_1" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-none" id="member-2">
+                            <div class="input-group input-group-outline my-3">
+                                <label class="form-label">Nom</label>
+                                <input type="text" name="nom_1" class="form-control" required>
+                            </div>
+                            <div class="input-group input-group-outline my-3">
+                                <label class="form-label">Postnom</label>
+                                <input type="text" name="postnom_1" class="form-control" required>
+                            </div>
+                            <div class="input-group input-group-outline my-3">
+                                <label class="form-label">Numero NN ( Carte d'electeur )</label>
+                                <input type="text" name="nn_1" class="form-control" required>
+                            </div>
+                            <div class="input-group input-group-outline my-3">
+                                <label class="form-label">Numero de téléphone</label>
+                                <input type="text" name="phone_1" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="text-center">
+                                <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" id="btn-loader">
+                                <span>Connexion</span>
+                                <!-- <span class="spinner-border spinner-border-sm"></span> -->
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </form>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <?php include("./components/footer.php") ?>
     <!-- </div> -->
   </main>
+  <?php #include("./components/footer.php") ?>
+  <script>
+    $("[type='checkbox']").on("change", (e) => {
+       if($(e.currentTarget).attr("is-checked") === "true"){ 
+            $(e.currentTarget).attr({"is-checked":"false"}) 
+            $("#member-2").addClass("d-none")
+            $("#member-1").addClass("col-lg-12")
+        } else { 
+            $(e.currentTarget).attr({"is-checked":"true"})
+            $("#member-2").removeClass("d-none")
+            $("#member-1").removeClass("col-lg-12").addClass("col-lg-6")
+        }
+    });
+
+    $("#form-addmember").on("submit", (e) => {
+        alert(1)
+    });
+  </script>
