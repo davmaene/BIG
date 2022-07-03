@@ -67,7 +67,40 @@ if($_GET['curl']){
                 $member1 = new Membres();
                 $member2 = new Membres();
                 
+                $member1->__constructor(
+                    null, 
+                    strtolower($_POST['nom1']),
+                    strtolower($_POST['postnom1']),
+                    $_POST['phone1'],
+                    0,
+                    1,
+                    date("D-M-Y, H:i:s")
+                );
+                $member1 = $member1->save();
+                // save seconde member
+                $member2->__constructor(
+                    null, 
+                    strtolower($_POST['nom2']),
+                    strtolower($_POST['postnom2']),
+                    $_POST['phone2'],
+                    0,
+                    1,
+                    date("D-M-Y, H:i:s")
+                );
+                $member2 = $member2->save();
 
+                $b1 = $member1->body;
+                $b2 = $member2->body;
+
+                if($member1->status === 200 && $member2->status === 200){
+                    $acoount = new Accounts();
+                    $acoount->__constructor(null, 0, $b1->id, $b2->id, 1, 0, date("D-M-Y, H:i:s"));
+
+                    $account = $acoount->save();
+                    echo($account->print());
+                } else {
+                    echo($member1->print());
+                }
 
             }else{
                 $member = new Membres();
@@ -89,7 +122,6 @@ if($_GET['curl']){
 
                     $account = $acoount->save();
                     echo($account->print());
-
                 } else {
                     echo($member->print());
                 }
