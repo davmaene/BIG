@@ -1,5 +1,5 @@
 <?php require("./action.php"); ?>
-
+<?php require("./head.php"); ?> 
 <!DOCTYPE html>
 <html lang="en">
 

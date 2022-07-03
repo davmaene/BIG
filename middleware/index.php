@@ -60,7 +60,8 @@ if($_GET['curl']){
                 echo($res->print());
             }
             break;
-        case '':
+        case 'addmember':
+            
             break;
         
         default:

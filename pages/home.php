@@ -80,6 +80,36 @@
             </div>
         </div>
     </div>
+    <div class="row mt-4">
+        <div class="col-lg-3">
+            <div class="card">
+                <a href="?page=addmembre" class="btn btn-primary">
+                    <span>Ajouter un membre</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <button class="btn btn-secondary">
+                    <span>Demarrer une réunion</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <button class="btn btn-info">
+                    <span>Ajouter une part</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <button class="btn btn-success">
+                    <span>Octroit crédit</span>
+                </button>
+            </div>
+        </div>
+    </div>
     <div class="row mb-4 mt-4">
         <div class="col-lg-6 col-md-6 mb-md-0 mb-4">
             <div class="card">
