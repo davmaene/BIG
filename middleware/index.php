@@ -60,9 +60,9 @@ if($_GET['curl']){
             $admin = new Admins();
             $admin = $admin->getOne(
                     array(
-                    "phone" => _fillPhoneNumber($_POST['phone']),
-                    "password" => md5($_POST['password'])
-                    ), null, null, "AND"
+                        "phone" => _fillPhoneNumber($_POST['phone']),
+                        "password" => md5($_POST['password'])
+                ), null, null, "AND"
             );
 
             try {

@@ -184,6 +184,7 @@
                 break;
             }
           } catch (error) {
+            console.log(error);
             toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
           }
         })

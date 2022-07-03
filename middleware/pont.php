@@ -16,5 +16,5 @@ include_once("ware/model.crud.php");
 // ---------- cunstomers class ---------------
 // ----------- main --------------------------
 // config/main.php
-require("config/main.php");
+// require("config/main.php");
 ?>
