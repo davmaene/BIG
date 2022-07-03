@@ -1,7 +1,7 @@
 <?php 
 session_start();
 // -------------------------------------------
-//      ----- don't delete this file -----
+// ----- don't delete this file -----
 // -------------------------------------------
 include("config/config.php");
 include_once("ware/model.log.php");

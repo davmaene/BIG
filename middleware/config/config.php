@@ -9,12 +9,13 @@ $customer_password = "IRdFg9A07LWQwnaOWeug";// || ""; // password to access to d
 //          dont modify code beyond this line
 // ---------------------------------------------------------
 define("env", // environement
-     array(
-         "dialect" => $customer_dialect ?? "mysql",
-         "dbname" => $customer_dbname ?? "test",
-         "hostname" => $customer_hostname ?? "localhost",
-         "username" => $customer_username ?? "root",
-         "password" => $customer_password ?? ""
-     ));
+    array(
+        "dialect" => $customer_dialect ?? "mysql",
+        "dbname" => $customer_dbname ?? "test",
+        "hostname" => $customer_hostname ?? "localhost",
+        "username" => $customer_username ?? "root",
+        "password" => $customer_password ?? ""
+    )
+);
 // 
 ?>

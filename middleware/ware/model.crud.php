@@ -1,4 +1,5 @@
 <?php 
+    include_once("model.Config.php");
     class CRUD__ implements Metier_{
         public function __construct(){}
 
@@ -55,7 +56,7 @@
                 $tbl = $options['table'];
                 $res = $conf->onFetchingOne($sql, $tbl);
                 if($res !== 500){
-                    
+
                 }else return new Response(500, $res);
             }else return new Response(401, "Options parameter must be an array !");
         }
