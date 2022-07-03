@@ -47,7 +47,6 @@ if($_GET['curl']){
             if(count($b) && $account->status === 200){
 
             }else echo($account->print());
-            
             break;
         case 'connexion':
             $admin = new Admins();
