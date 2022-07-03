@@ -66,8 +66,20 @@ if($_GET['curl']){
                 $member1 = new Membres();
                 $member2 = new Membres();
                 
-            }else{
 
+            }else{
+                $member = new Membres();
+                $member->__constructor(
+                    null, 
+                    strtolower($_POST['nom1']),
+                    strtolower($_POST['postnom1']),
+                    $_POST['phone1'],
+                    0,
+                    1,
+                    date("D, d M Y H:i:s")
+                );
+                $member = $member->save();
+                echo($member->print());
             }
             break;
         default:

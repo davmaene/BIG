@@ -68,8 +68,7 @@
                         <div class="col-lg-12">
                             <div class="text-center">
                                 <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" id="btn-loader">
-                                <span>Connexion</span>
-                                <!-- <span class="spinner-border spinner-border-sm"></span> -->
+                                    <span>Connexion</span>
                                 </button>
                             </div>
                         </div>
