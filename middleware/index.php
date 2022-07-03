@@ -32,7 +32,9 @@ function _fillPhoneNumber($string){
 if($_GET['curl']){
     $curl = $_GET['curl'];
     switch ($curl) {
-
+        case 'addpart':
+            
+            break;
         case 'connexion':
             $admin = new Admins();
             $admin = $admin->getOne(
@@ -74,7 +76,7 @@ if($_GET['curl']){
                     $_POST['phone1'],
                     0,
                     1,
-                    date("D-M-Y, H:i:s")
+                    date("d/m/Y, H:i:s")
                 );
                 $member1 = $member1->save();
                 // save seconde member
@@ -85,7 +87,7 @@ if($_GET['curl']){
                     $_POST['phone2'],
                     0,
                     1,
-                    date("D-M-Y, H:i:s")
+                    date("d/m/Y, H:i:s")
                 );
                 $member2 = $member2->save();
 
@@ -94,7 +96,7 @@ if($_GET['curl']){
 
                 if($member1->status === 200 && $member2->status === 200){
                     $acoount = new Accounts();
-                    $acoount->__constructor(null, 1, $b1->id, $b2->id, 1, 0, date("D-M-Y, H:i:s"));
+                    $acoount->__constructor(null, 1, $b1->id, $b2->id, 1, 0, date("d/m/Y, H:i:s"));
 
                     $account = $acoount->save();
                     echo($account->print());
@@ -111,13 +113,13 @@ if($_GET['curl']){
                     $_POST['phone1'],
                     0,
                     1,
-                    date("D-M-Y, H:i:s")
+                    date("d/m/Y, H:i:s")
                 );
                 $member = $member->save();
                 $b = $member->body;
                 if($member->status === 200){
                     $acoount = new Accounts();
-                    $acoount->__constructor(null, 0, $b->id, 0, 1, 0, date("D-M-Y, H:i:s"));
+                    $acoount->__constructor(null, 0, $b->id, 0, 1, 0, date("d/m/Y, H:i:s"));
 
                     $account = $acoount->save();
                     echo($account->print());

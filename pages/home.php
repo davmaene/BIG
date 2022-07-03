@@ -5,6 +5,10 @@
         box-shadow: 0 3px 3px 0 rgba(233, 30, 99, 0.15), 0 3px 1px -2px rgba(233, 30, 99, 0.2), 0 1px 5px 0 rgba(233, 30, 99, 0.15); 
     }
 </style>
+<?php 
+  $membres = getMemebres();
+  $membres = $membres->status === 200 ? $membres->body : [];
+?>
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -16,12 +20,12 @@
                 </div>
                 <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Total membres</p>
-                <h4 class="mb-0">30</h4>
+                <h4 class="mb-0"><?= count($membres) ?></h4>
                 </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-                <p class="mb-0"><span class="text-success text-sm font-weight-bolder">30 </span>nombre total de tous les membres</p>
+                <p class="mb-0"><span class="text-success text-sm font-weight-bolder"><?= count($membres) ?> </span>nombre total de tous les membres</p>
             </div>
             </div>
         </div>
@@ -34,12 +38,12 @@
                 </div>
                 <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Solde en crédit</p>
-                <h4 class="mb-0">2,300$</h4>
+                <h4 class="mb-0">0$</h4>
                 </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-                <p class="mb-0"><span class="text-success text-sm font-weight-bolder">16 </span>nombre de crédits en cours </p>
+                <p class="mb-0"><span class="text-success text-sm font-weight-bolder">0 </span>nombre de crédits en cours </p>
             </div>
             </div>
         </div>
@@ -97,9 +101,9 @@
         </div>
         <div class="col-lg-3">
             <div class="card">
-                <button class="btn btn-info">
+                <a href="?page=addpart" class="btn btn-info">
                     <span>Ajouter une part</span>
-                </button>
+                </a>
             </div>
         </div>
         <div class="col-lg-3">
