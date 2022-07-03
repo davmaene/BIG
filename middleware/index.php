@@ -62,7 +62,7 @@ if($_GET['curl']){
                     array(
                     "phone" => _fillPhoneNumber($_POST['phone']),
                     "password" => md5($_POST['password'])
-                    ), null, null, null
+                    ), null, null, "AND"
             );
 
             try {

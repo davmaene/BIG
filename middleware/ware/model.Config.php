@@ -10,6 +10,7 @@
 class Config implements Init {
 
     private $_dialect = env['dialect'] ?? 'mysql';
+    private $_host = env['hostname'];
     private $_dbname = env['dbname'];
     private $_username = env['username'];
     private $_password = env['password'];
@@ -109,9 +110,11 @@ class Config implements Init {
     }
 
     public function onConnexion(){
+        $host = $this->_host;
+        $dialect = $this->_dialect;
         if($this->db === null){
             try {
-                $conn = new PDO("mysql:host=localhost;dbname=$this->_dbname", "$this->_username", "$this->_password");
+                $conn = new PDO("$dialect:host=$host;dbname=$this->_dbname", "$this->_username", "$this->_password");
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $this->db = $conn;
                 return true;

@@ -43,7 +43,7 @@
                         </span>
                       </div>
                       <div class="d-flex flex-column justify-content-center" style="margin-left: 3px;">
-                        <h6 class="mb-0 text-sm"><?= ucwords($value->nom)." ".ucwords($value->nom) ?></h6>
+                        <h6 class="mb-0 text-sm"><?= ucwords($value->nom)." ".ucwords($value->postnom) ?></h6>
                         <p class="text-xs text-secondary mb-0">Numéro <?= $value->id ?></p>
                       </div>
                     </div>
