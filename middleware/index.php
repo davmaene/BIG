@@ -35,9 +35,15 @@ if($_GET['curl']){
     switch ($curl) {
         case 'addpart':
             $parts = new Parts();
+            // $parts->__constructor(null, (int) $_POST['numcarnet'], (int) $_POST['parts'], date("d/m/Y, H:i:s"), date("d/m/Y, H:i:s"), $_POST['valeupart']);
+            // $parts = $parts->save();
             $account = new Accounts();
-            $parts->__constructor(null, (int) $_POST['numcarnet'], (int) $_POST['parts'], date("d/m/Y, H:i:s"), date("d/m/Y, H:i:s"), $_POST['valeupart']);
-            $parts = $parts->save();
+            $account = $account->getOne(array(
+                "membre_1" => (int) $_POST['numcarnet'],
+                "membre_2" => (int) $_POST['numcarnet']
+            ), null, null, "OR");
+
+            var_dump($account);
             
             break;
         case 'connexion':
