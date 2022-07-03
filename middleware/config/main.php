@@ -1,6 +1,6 @@
 <?php 
-class Main extends Config{
+class Main{
     protected $conf = null;
-    
+
 }
 ?>
