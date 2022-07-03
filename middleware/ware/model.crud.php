@@ -48,6 +48,17 @@
                 return new Response(500,["initialization error "]);
             }
         }
+        public function runSQL(array $options = null){
+            $conf = new Config();
+            if(is_array($options)){
+                $sql = $options['sql'];
+                $tbl = $options['table'];
+                $res = $conf->onFetchingOne($sql, $tbl);
+                if($res !== 500){
+                    
+                }else return new Response(500, $res);
+            }else return new Response(401, "Options parameter must be an array !");
+        }
         public function save(){ // create instance and add record to db
             $conf = new Config();
             $nclassname = $this->__createClass();

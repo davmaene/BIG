@@ -18,8 +18,24 @@
         function getMemebres($options = null){
             $membres = new Membres();
             $membres = $membres->getAll();
-
             return $membres;
+        }
+
+        function getSoldeContribution($options){
+            $nmbofparts = 0;
+            $confs = new Config();
+            $parts = new Parts();
+            $parts = $parts->getAll();
+
+            // $res = $confs->onFetchingOne(
+            //     "",
+            //     ""
+            // );
+            foreach ((array) $parts->body as $value) {
+              $nmbofparts = $nmbofparts + $value->parts;
+            }
+
+            return $nmbofparts;
         }
 
     }else header("location: ./login/");

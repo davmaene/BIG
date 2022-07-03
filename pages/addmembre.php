@@ -38,10 +38,10 @@
                                 <label class="form-label">Postnom</label>
                                 <input type="text" name="postnom1" class="form-control" required>
                             </div>
-                            <div class="input-group input-group-outline my-3">
+                            <!-- <div class="input-group input-group-outline my-3">
                                 <label class="form-label">Numero Carnet</label>
                                 <input type="text" name="nn1" class="form-control" required>
-                            </div>
+                            </div> -->
                             <div class="input-group input-group-outline my-3">
                                 <label class="form-label">Numero de téléphone</label>
                                 <input type="text" name="phone1" class="form-control" required>
@@ -56,10 +56,10 @@
                                 <label class="form-label">Postnom</label>
                                 <input type="text" name="postnom2" class="form-control" >
                             </div>
-                            <div class="input-group input-group-outline my-3">
+                            <!-- <div class="input-group input-group-outline my-3">
                                 <label class="form-label">Numero Carnet</label>
-                                <input type="text" name="nn2" class="form-control" >
-                            </div>
+                                <input type="text" name="nn2" class="form-control" de>
+                            </div> -->
                             <div class="input-group input-group-outline my-3">
                                 <label class="form-label">Numero de téléphone</label>
                                 <input type="text" name="phone2" class="form-control" >

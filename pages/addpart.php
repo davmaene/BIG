@@ -105,7 +105,11 @@
                 switch (s['status']) {
                     case 200:
                         toastr.success('Opération effectuée avec succès !');
-                        alert("Opération effectuée avec succès !")
+                        alert("Opération effectuée avec succès !");
+                        break;
+                    case 404:
+                        toastr.success('Le numéro du membre on du carnet est incorrecte !');
+                        alert("Le numéro du membre on du carnet est incorrecte !");
                         break;
                     default:
                         alert("Une erreur vient de se produire ! Veuillez réessayer plus tard!")

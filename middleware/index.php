@@ -51,7 +51,10 @@ if($_GET['curl']){
                 $parts = $parts->save();
 
                 echo($parts->print());
-            }else echo($account->print());
+            }else{
+                $res = new Response(404, "le  numero du membre est erroné !");
+                echo($res->print());
+            }
             break;
         case 'connexion':
             $admin = new Admins();

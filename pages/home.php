@@ -8,6 +8,9 @@
 <?php 
   $membres = getMemebres();
   $membres = $membres->status === 200 ? $membres->body : [];
+
+  $parts = getSoldeContribution(array());
+//   var_dump($parts);
 ?>
 <div class="container-fluid py-4">
     <div class="row">
@@ -55,13 +58,13 @@
                     <span style="font-size: 27px; align-self: center;" class="fa fa-heart text-white"></span>
                 </div>
                 <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Solde en contribution</p>
-                <h4 class="mb-0">3,462$</h4>
+                <p class="text-sm mb-0 text-capitalize">Solde en parts</p>
+                <h4 class="mb-0"><?= $parts * 1320 ?>$</h4>
                 </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-                <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">123</span> nombre de contributions</p>
+                <p class="mb-0"><span class="text-danger text-sm font-weight-bolder"><?= $parts ?></span> nombre de parts</p>
             </div>
             </div>
         </div>
@@ -74,12 +77,12 @@
                 </div>
                 <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Solde en panalité</p>
-                <h4 class="mb-0">103,430$</h4>
+                <h4 class="mb-0">0$</h4>
                 </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-                <p class="mb-0"><span class="text-success text-sm font-weight-bolder">78 </span>nombre de penalité</p>
+                <p class="mb-0"><span class="text-success text-sm font-weight-bolder">0 </span>nombre de penalité</p>
             </div>
             </div>
         </div>
