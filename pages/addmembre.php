@@ -119,11 +119,8 @@
             const s = JSON.parse(res);
             switch (s['status']) {
               case 200:
-                toastr.success('Connexion effectuée avec succès !');
-                window.location.replace("../");
-                break;
-              case 404:
-                toastr.error('Les informations entrées sont erronées !');
+                toastr.success('Le compte vient d\'être crée avec succès !');
+                // window.location.replace("../");
                 break;
               default:
                 toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
@@ -135,6 +132,7 @@
         })
         .fail(err => {
           $("#loader-sp").remove()
+          toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
           console.log("Error => ",err);
         })
       })

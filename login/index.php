@@ -189,6 +189,7 @@
         })
         .fail(err => {
           $("#loader-sp").remove()
+          toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
           console.log("Error => ",err);
         })
       })
