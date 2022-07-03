@@ -103,14 +103,14 @@
             try {
                 const s = JSON.parse(res);
                 switch (s['status']) {
-                case 200:
-                    toastr.success('Opération effectuée avec succès !');
-                    alert("Le compte vient d\'être crée avec succès !")
-                    break;
-                default:
-                    alert("Une erreur vient de se produire ! Veuillez réessayer plus tard!")
-                    toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
-                    break;
+                    case 200:
+                        toastr.success('Opération effectuée avec succès !');
+                        alert("Opération effectuée avec succès !")
+                        break;
+                    default:
+                        alert("Une erreur vient de se produire ! Veuillez réessayer plus tard!")
+                        toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
+                        break;
                 }
             } catch (error) {
                 console.log(error);
