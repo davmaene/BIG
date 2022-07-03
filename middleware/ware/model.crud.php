@@ -67,7 +67,7 @@
                             $resp = $conf->onFetchingOne($lastinsertedrow, $nclassname);
                             $row = $this->getOne(array(
                                 "id" => $resp[0]["LAST_INSERT_ID()"]
-                            ));
+                            ), null, null, "AND");
                             return  $row ?? new Response(200, $row);
                         case 503: return new Response(503, []);
                         default: return new Response(505, []);
@@ -112,13 +112,13 @@
                 $query .= $cls;
                 $resp = $conf->onRunningQuery($query, $nclassname);
                 if(is_bool($resp) && $resp === true){
-                    $getit = $this->getOne($clauses);
+                    $getit = $this->getOne($clauses, null, null, "AND");
                     return $getit;
                 }else return new Response(500, ["Error occured when trying to run Query on TABLE :: $nclassname "]);
             }else return new Response(401, ["CLAUSE and SETS must be instance of array"]);
         }
         // -------------------------- CRUD ``` RETRIEVE ONE ``` -------
-        public function getOne(Array $clauses = null, Array $joiture = null, $sort = null, $connection = null){
+        public function getOne(Array $clauses = null, Array $joiture = null, $sort = null, $connection){
             
             $nblines = 0;
             $tabProperties = [];
@@ -129,8 +129,7 @@
 
             $conf = new Config();
             $nclassname = $this->__createClass();
-            if( $connection === "AND" || $connection === "OR"){ $connection = $connection;
-            }else return new Response(401, ["the passed in getOne method Connection must be in array('AND', 'OR')"]);
+
             if($clauses === null) return new Response(401, ["a getOne method must have a clause passed as param"]);
             if(!is_array($clauses)) return new Response(401, ["the passed in getOne method param must be an array"]);
             foreach ($properties as $key => $value) array_push($tabProperties, $key);
@@ -140,7 +139,7 @@
             foreach ($clauses as $key => $value) {
                 ++$nblines;
                 $value_ = is_numeric($value) && strlen($value) < 3 ? $value : "'".$value."'";
-                $query .= ((int) $nblines === count($clauses)) ? " `$key` = $value_" : " `$key` = $value_ $connection ";            
+                $query .= ((int) $nblines === count($clauses)) ? " `$key` = $value_" : " `$key` = $value_ $connection";            
             }
             $query .= " LIMIT 1";
             $rem = $conf->onFetchingOne($query, $nclassname);
@@ -157,7 +156,7 @@
             }else return new Response(500, []);
         }
         // --------------------------
-        public function getAll(Array $clauses = null, Array $jointure = null){
+        public function getAll( Array $clauses = null, Array $jointure = null, $connection = null){
             $nblines = 0;
             $tabProperties = [];
             $objectName = get_class($this);
@@ -229,7 +228,8 @@
                         $item = (object) get_object_vars($this);
                         array_push($retResponse, $item);
                     }
-                    $results = count($retResponse) > 0 ? (count($retResponse) === 1 ? $retResponse[0] : $retResponse) : $retResponse;
+                    // count($retResponse) > 0 ? (count($retResponse) === 1 ? $retResponse[0] : $retResponse) : 
+                    $results = $retResponse;
                     return new Response(200, $results); 
                 }else{
                     // var_dump($properties);
@@ -241,7 +241,8 @@
                         $item = (object) get_object_vars($this);
                         array_push($retResponse, $item);
                     }
-                    $results = count($retResponse) > 0 ? (count($retResponse) === 1 ? $retResponse[0] : $retResponse) : $retResponse;
+                    // count($retResponse) > 0 ? (count($retResponse) === 1 ? $retResponse[0] : $retResponse) :
+                    $results = $retResponse;
                     return new Response(200, $results);
                 }
             }else return new Response(500, []);

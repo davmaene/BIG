@@ -36,17 +36,16 @@ if($_GET['curl']){
         case 'addpart':
             $parts = new Parts();
             $account = new Accounts();
-            $account = $account->getOne(
-                array(
+            $account = $account->getOne(array(
                     "membre_1" => (int) $_POST['numcarnet'],
                     "membre_2" => (int) $_POST['numcarnet']
-                ),
-                null, 
-                null, 
-                "OR"
-            );
+                ),null,null, "OR");
 
             $b = (array) $account->body;
+
+            // var_dump($account);
+            // return 0;
+           
             if(count($b) && $account->status === 200){
                 $parts->__constructor(null, (int) $b['id'], (int) $_POST['parts'], date("d/m/Y, H:i:s"), date("d/m/Y, H:i:s"), $_POST['valeupart']);
                 $parts = $parts->save();
@@ -60,7 +59,7 @@ if($_GET['curl']){
                     array(
                     "phone" => _fillPhoneNumber($_POST['phone']),
                     "password" => md5($_POST['password'])
-                )
+                    ), null, null, null
             );
 
             try {
