@@ -51,7 +51,7 @@ if($_GET['curl']){
                 $parts->__constructor(null, (int) $b['id'], (int) $_POST['parts'], date("d/m/Y, H:i:s"), date("d/m/Y, H:i:s"), $_POST['valeupart']);
                 $parts = $parts->save();
 
-                
+                echo($parts->print());
             }else echo($account->print());
             break;
         case 'connexion':
