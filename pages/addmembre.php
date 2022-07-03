@@ -16,16 +16,16 @@
                         <div class="col-lg-12">
                             <div class="form-check form-switch d-flex align-items-center mb-3">
                                 <input class="form-check-input" type="checkbox" id="rememberMe" name="checked" is-checked="false">
-                                <label class="form-check-label mb-0 ms-2" for="rememberMe">Un compte double</label>
+                                <label class="form-check-label mb-0 ms-2" for="rememberMe">Un compte en couple</label>
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <div class="row">
+                            <div class="row d-none on-ischecked">
                                 <div class="col-lg-6">
-                                    <strong>Membre 1</strong>
+                                    <strong class="text-center">Membre 1</strong>
                                 </div>
                                 <div class="col-lg-6">
-                                    <strong>Membre 1</strong>
+                                    <strong class="text-center">Membre 1</strong>
                                 </div>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                                 <input type="text" name="postnom_1" class="form-control" required>
                             </div>
                             <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Numero NN ( Carte d'electeur )</label>
+                                <label class="form-label">Numero Carnet</label>
                                 <input type="text" name="nn_1" class="form-control" required>
                             </div>
                             <div class="input-group input-group-outline my-3">
@@ -57,7 +57,7 @@
                                 <input type="text" name="postnom_1" class="form-control" required>
                             </div>
                             <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Numero NN ( Carte d'electeur )</label>
+                                <label class="form-label">Numero Carnet</label>
                                 <input type="text" name="nn_1" class="form-control" required>
                             </div>
                             <div class="input-group input-group-outline my-3">
@@ -89,7 +89,9 @@
             $(e.currentTarget).attr({"is-checked":"false"}) 
             $("#member-2").addClass("d-none")
             $("#member-1").addClass("col-lg-12")
-        } else { 
+            $(".on-ischecked").addClass("d-none"); 
+        } else {
+            $(".on-ischecked").removeClass("d-none"); 
             $(e.currentTarget).attr({"is-checked":"true"})
             $("#member-2").removeClass("d-none")
             $("#member-1").removeClass("col-lg-12").addClass("col-lg-6")
@@ -97,6 +99,45 @@
     });
 
     $("#form-addmember").on("submit", (e) => {
-        alert(1)
+        e.preventDefault()
+        const ldr = document.createElement("span");
+        $(ldr).attr({
+            id: "loader-sp",
+            class: "spinner-border spinner-border-sm ml-3"
+        })
+        $("#form-connexion").on("submit", (e) => {
+        e.preventDefault()
+        $("#btn-loader").append(ldr)
+        $.ajax({
+          method: "POST",
+          url: `../middleware/index.php?curl=addmember`,
+          data: $(e.target).serialize()
+        })
+        .done(res => {
+          $("#loader-sp").remove()
+          try {
+            const s = JSON.parse(res);
+            switch (s['status']) {
+              case 200:
+                toastr.success('Connexion effectuée avec succès !');
+                window.location.replace("../");
+                break;
+              case 404:
+                toastr.error('Les informations entrées sont erronées !');
+                break;
+              default:
+                toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
+                break;
+            }
+          } catch (error) {
+            toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
+          }
+        })
+        .fail(err => {
+          $("#loader-sp").remove()
+          console.log("Error => ",err);
+        })
+      })
+
     });
   </script>
