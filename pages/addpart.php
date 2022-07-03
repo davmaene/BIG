@@ -33,8 +33,8 @@
                                 <div class="input-group input-group-outline my-3">
                                     <!-- <label class="form-label">Valeur d'une part</label> -->
                                     <select name="devise" id="" class="form-control">
-                                        <option value="">USD</option>
-                                        <option value="" disabled>CDF</option>
+                                        <option value="USD">USD</option>
+                                        <option value="CDF" disabled>CDF</option>
                                     </select>
                                 </div>
                             </div>
