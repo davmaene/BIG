@@ -43,7 +43,10 @@ if($_GET['curl']){
                 "membre_2" => (int) $_POST['numcarnet']
             ), null, null, "OR");
 
-            var_dump($account);
+            $b = (array) $account->body;
+            if(count($b) && $account->status === 200){
+
+            }else echo($account->print());
             
             break;
         case 'connexion':
