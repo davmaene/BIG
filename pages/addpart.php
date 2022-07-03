@@ -41,7 +41,7 @@
                         </div>
                         <div class="input-group input-group-outline my-3">
                             <label class="form-label">Nombre de parts</label>
-                            <input type="number" name="parts" class="form-control" required>
+                            <input type="number" name="parts" class="form-control" required minlength="1">
                         </div>
                         <div class="col-lg-12">
                             <div class="text-center">
@@ -85,7 +85,7 @@
         $(".totaldposit").text(`${valuepart * (!isNaN(parseInt(e.currentTarget.value)) ? parseInt(e.currentTarget.value) : 0)}$ ( Dollars )`);
     })
 
-    $("#form-addmember").on("submit", (e) => {
+    $("#form-part").on("submit", (e) => {
         e.preventDefault()
         const ldr = document.createElement("span");
         $(ldr).attr({
@@ -108,11 +108,13 @@
                     alert("Le compte vient d\'être crée avec succès !")
                     break;
                 default:
+                    alert("Une erreur vient de se produire ! Veuillez réessayer plus tard!")
                     toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
                     break;
                 }
             } catch (error) {
                 console.log(error);
+                alert("Une erreur vient de se produire ! Veuillez réessayer plus tard!")
                 toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
             }
         })

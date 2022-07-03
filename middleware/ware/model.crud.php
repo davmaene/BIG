@@ -118,7 +118,8 @@
             }else return new Response(401, ["CLAUSE and SETS must be instance of array"]);
         }
         // -------------------------- CRUD ``` RETRIEVE ONE ``` -------
-        public function getOne(Array $clauses = null, Array $joiture = null, $sort = null){
+        public function getOne(Array $clauses = null, Array $joiture = null, $sort = null, $connection = null){
+            
             $nblines = 0;
             $tabProperties = [];
             $objectName = get_class($this);
@@ -128,7 +129,8 @@
 
             $conf = new Config();
             $nclassname = $this->__createClass();
-
+            if( $connection === "AND" || $connection === "OR"){ $connection = $connection;
+            }else return new Response(401, ["the passed in getOne method Connection must be in array('AND', 'OR')"]);
             if($clauses === null) return new Response(401, ["a getOne method must have a clause passed as param"]);
             if(!is_array($clauses)) return new Response(401, ["the passed in getOne method param must be an array"]);
             foreach ($properties as $key => $value) array_push($tabProperties, $key);
@@ -138,7 +140,7 @@
             foreach ($clauses as $key => $value) {
                 ++$nblines;
                 $value_ = is_numeric($value) && strlen($value) < 3 ? $value : "'".$value."'";
-                $query .= ((int) $nblines === count($clauses)) ? " `$key` = $value_" : " `$key` = $value_ AND ";            
+                $query .= ((int) $nblines === count($clauses)) ? " `$key` = $value_" : " `$key` = $value_ $connection ";            
             }
             $query .= " LIMIT 1";
             $rem = $conf->onFetchingOne($query, $nclassname);

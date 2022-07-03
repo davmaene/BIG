@@ -10,6 +10,7 @@ include_once("models/cl.rubriques.php");
 include_once("models/cl.admin.php");
 include_once("models/cl.member.php");
 include_once("models/cl.accounts.php");
+include_once("models/cl.parts.php");
 
 function _listRubriques($where = null){
     $rbqs = new Rubriques();
@@ -33,6 +34,10 @@ if($_GET['curl']){
     $curl = $_GET['curl'];
     switch ($curl) {
         case 'addpart':
+            $parts = new Parts();
+            $account = new Accounts();
+            $parts->__constructor(null, (int) $_POST['numcarnet'], (int) $_POST['parts'], date("d/m/Y, H:i:s"), date("d/m/Y, H:i:s"), $_POST['valeupart']);
+            $parts = $parts->save();
             
             break;
         case 'connexion':
