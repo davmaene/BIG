@@ -9,12 +9,11 @@
 
 class Config implements Init {
 
-    private $_dialect = env['dialect'] ?? 'mysql';
+    private $_dialect = env['dialect'];
     private $_host = env['hostname'];
     private $_dbname = env['dbname'];
     private $_username = env['username'];
     private $_password = env['password'];
-    protected $db = null;
 
     private function retrievesColumn($table, $alias){
         $columnname = [];
