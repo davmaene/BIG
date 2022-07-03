@@ -9,6 +9,7 @@ include_once("models/cl.user.php");
 include_once("models/cl.rubriques.php");
 include_once("models/cl.admin.php");
 include_once("models/cl.member.php");
+include_once("models/cl.accounts.php");
 
 function _listRubriques($where = null){
     $rbqs = new Rubriques();
@@ -67,6 +68,7 @@ if($_GET['curl']){
                 $member2 = new Membres();
                 
 
+
             }else{
                 $member = new Membres();
                 $member->__constructor(
@@ -76,10 +78,21 @@ if($_GET['curl']){
                     $_POST['phone1'],
                     0,
                     1,
-                    date("D, d M Y H:i:s")
+                    date("D-M-Y, H:i:s")
                 );
                 $member = $member->save();
-                echo($member->print());
+                $b = $member->body;
+                if($member->status === 200){
+                    var_dump($b);
+                    $acoount = new Accounts();
+                    $acoount->__constructor(null, 0, $b->id, 0, 1, 0, date("D-M-Y, H:i:s"));
+
+                    $account = $acoount->save();
+                    echo($account->print());
+
+                } else {
+                    echo($member->print());
+                }
             }
             break;
         default:
