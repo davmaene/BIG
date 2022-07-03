@@ -95,7 +95,7 @@
         $("#btn-loader").append(ldr)
         $.ajax({
             method: "POST",
-            url: `./middleware/index.php?curl=addmember`,
+            url: `./middleware/index.php?curl=addpart`,
             data: $(e.target).serialize()
         })
         .done(res => {
@@ -104,7 +104,7 @@
                 const s = JSON.parse(res);
                 switch (s['status']) {
                 case 200:
-                    toastr.success('Le compte vient d\'être crée avec succès !');
+                    toastr.success('Opération effectuée avec succès !');
                     alert("Le compte vient d\'être crée avec succès !")
                     break;
                 default:
