@@ -22,9 +22,22 @@
                             <label class="form-label">Numéro de carnet ou numéro de membre</label>
                             <input type="number" name="numcarnet" class="form-control" required>
                         </div>
-                        <div class="input-group input-group-outline my-3">
-                            <label class="form-label">Valeur d'une part</label>
-                            <input type="text" name="valeupart" class="form-control" required readonly>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="input-group input-group-outline my-3">
+                                    <label class="form-label">Valeur d'une part</label>
+                                    <input type="text" name="valeupart" class="form-control" required readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="input-group input-group-outline my-3">
+                                    <!-- <label class="form-label">Valeur d'une part</label> -->
+                                    <select name="devise" id="" class="form-control">
+                                        <option value="">USD</option>
+                                        <option value="" disabled>CDF</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="input-group input-group-outline my-3">
                             <label class="form-label">Nombre de parts</label>
@@ -69,7 +82,7 @@
     });
 
     $('[name="parts"]').on("keyup", (e) => {
-        $(".totaldposit").text(valuepart * (!isNaN(parseInt(e.currentTarget.value)) ? parseInt(e.currentTarget.value) : 0));
+        $(".totaldposit").text(`${valuepart * (!isNaN(parseInt(e.currentTarget.value)) ? parseInt(e.currentTarget.value) : 0)}$ ( Dollars )`);
     })
 
     $("#form-addmember").on("submit", (e) => {
