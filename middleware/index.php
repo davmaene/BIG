@@ -8,6 +8,7 @@ require_once("pont.php"); // don't delete or modify this line
 include_once("models/cl.user.php");
 include_once("models/cl.rubriques.php");
 include_once("models/cl.admin.php");
+include_once("models/cl.member.php");
 
 function _listRubriques($where = null){
     $rbqs = new Rubriques();
@@ -61,9 +62,14 @@ if($_GET['curl']){
             }
             break;
         case 'addmember':
-            
+            if(isset($_POST['checked'])){
+                $member1 = new Membres();
+                $member2 = new Membres();
+                
+            }else{
+
+            }
             break;
-        
         default:
             $res = new Response(404, "Aucune route trouvée avec comme clé ");
             echo($res->print());

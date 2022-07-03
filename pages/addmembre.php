@@ -25,44 +25,44 @@
                                     <strong class="text-center">Membre 1</strong>
                                 </div>
                                 <div class="col-lg-6">
-                                    <strong class="text-center">Membre 1</strong>
+                                    <strong class="text-center">Membre 2</strong>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-12" id="member-1">
                             <div class="input-group input-group-outline my-3">
                                 <label class="form-label">Nom</label>
-                                <input type="text" name="nom_1" class="form-control" required>
+                                <input type="text" name="nom1" class="form-control" required>
                             </div>
                             <div class="input-group input-group-outline my-3">
                                 <label class="form-label">Postnom</label>
-                                <input type="text" name="postnom_1" class="form-control" required>
+                                <input type="text" name="postnom1" class="form-control" required>
                             </div>
                             <div class="input-group input-group-outline my-3">
                                 <label class="form-label">Numero Carnet</label>
-                                <input type="text" name="nn_1" class="form-control" required>
+                                <input type="text" name="nn1" class="form-control" required>
                             </div>
                             <div class="input-group input-group-outline my-3">
                                 <label class="form-label">Numero de téléphone</label>
-                                <input type="text" name="phone_1" class="form-control" required>
+                                <input type="text" name="phone1" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-lg-6 d-none" id="member-2">
                             <div class="input-group input-group-outline my-3">
                                 <label class="form-label">Nom</label>
-                                <input type="text" name="nom_1" class="form-control" required>
+                                <input type="text" name="nom2" class="form-control" >
                             </div>
                             <div class="input-group input-group-outline my-3">
                                 <label class="form-label">Postnom</label>
-                                <input type="text" name="postnom_1" class="form-control" required>
+                                <input type="text" name="postnom2" class="form-control" >
                             </div>
                             <div class="input-group input-group-outline my-3">
                                 <label class="form-label">Numero Carnet</label>
-                                <input type="text" name="nn_1" class="form-control" required>
+                                <input type="text" name="nn2" class="form-control" >
                             </div>
                             <div class="input-group input-group-outline my-3">
                                 <label class="form-label">Numero de téléphone</label>
-                                <input type="text" name="phone_1" class="form-control" required>
+                                <input type="text" name="phone2" class="form-control" >
                             </div>
                         </div>
                         <div class="col-lg-12">
@@ -105,37 +105,33 @@
             id: "loader-sp",
             class: "spinner-border spinner-border-sm ml-3"
         })
-        $("#form-connexion").on("submit", (e) => {
-        e.preventDefault()
         $("#btn-loader").append(ldr)
         $.ajax({
-          method: "POST",
-          url: `../middleware/index.php?curl=addmember`,
-          data: $(e.target).serialize()
+            method: "POST",
+            url: `./middleware/index.php?curl=addmember`,
+            data: $(e.target).serialize()
         })
         .done(res => {
-          $("#loader-sp").remove()
-          try {
-            const s = JSON.parse(res);
-            switch (s['status']) {
-              case 200:
-                toastr.success('Le compte vient d\'être crée avec succès !');
-                // window.location.replace("../");
-                break;
-              default:
+            $("#loader-sp").remove()
+            try {
+                const s = JSON.parse(res);
+                switch (s['status']) {
+                case 200:
+                    toastr.success('Le compte vient d\'être crée avec succès !');
+                    // window.location.replace("../");
+                    break;
+                default:
+                    toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
+                    break;
+                }
+            } catch (error) {
                 toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
-                break;
             }
-          } catch (error) {
-            toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
-          }
         })
         .fail(err => {
-          $("#loader-sp").remove()
-          toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
-          console.log("Error => ",err);
+            $("#loader-sp").remove()
+            toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
+            console.log("Error => ",err);
         })
-      })
-
     });
   </script>
