@@ -88,31 +88,45 @@
         </div>
     </div>
     <div class="row mt-4">
-        <div class="col-lg-3">
+        <div class="col-lg-2">
             <div class="card">
                 <a href="?page=addmembre" class="btn btn-primary">
                     <span>Ajouter un membre</span>
                 </a>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-2">
             <div class="card">
                 <button class="btn btn-secondary">
                     <span>Demarrer une réunion</span>
                 </button>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-2">
             <div class="card">
                 <a href="?page=addpart" class="btn btn-info">
-                    <span>Ajouter une part</span>
+                    <span>Contribution part</span>
                 </a>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-2">
+            <div class="card">
+                <a href="?page=contribution" class="btn btn-warning">
+                    <span>Contribution social</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-2">
             <div class="card">
                 <button class="btn btn-success">
                     <span>Octroit crédit</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="card">
+                <button class="btn btn-secondary">
+                    <span>Remboursement</span>
                 </button>
             </div>
         </div>

@@ -21,6 +21,14 @@
             return $membres;
         }
 
+        function getContributions($options){
+            $confs = new Config();
+            $parts = new Parts();
+            $parts = $parts->getAll();
+
+            return $parts;
+        }
+
         function getSoldeContribution($options){
             $nmbofparts = 0;
             $confs = new Config();

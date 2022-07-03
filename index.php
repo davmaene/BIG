@@ -76,7 +76,16 @@
               <!-- <i class="material-icons opacity-10">view_in_ar</i> -->
               <span class="fa fa-heart"></span>
             </div>
-            <span class="nav-link-text ms-1">Contributions</span>
+            <span class="nav-link-text ms-1">Contributions ( Parts )</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white bg-gradient-primary-cts" href="?page=contributions">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <!-- <i class="material-icons opacity-10">view_in_ar</i> -->
+              <span class="fa fa-heart"></span>
+            </div>
+            <span class="nav-link-text ms-1">Contributions ( Social )</span>
           </a>
         </li>
         <li class="nav-item">
