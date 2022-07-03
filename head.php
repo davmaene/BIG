@@ -5,21 +5,13 @@
             $session = (json_decode($session));
             return $session->nom." ".$session->postnom;
         }
-    
-        function countMembers(){
-    
+        
+        function getMemebres($options = null){
+            $membres = new Membres();
+            $membres = $membres->getAll();
+
+            return $membres;
         }
-    
-        function countPenalites(){
-    
-        }
-    
-        function countCredit(){
-    
-        }
-    
-        function countContributions(){
-    
-        }
+
     }else header("location: ./login/");
 ?>

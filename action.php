@@ -17,5 +17,5 @@
         }else $inc = 'home.php';
     }else $inc = 'home.php';
     $time_date = date('Y-m-d h:m:s');
-    // onCheckSession();
+    
 ?>
