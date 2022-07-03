@@ -35,16 +35,22 @@ if($_GET['curl']){
     switch ($curl) {
         case 'addpart':
             $parts = new Parts();
-            // $parts->__constructor(null, (int) $_POST['numcarnet'], (int) $_POST['parts'], date("d/m/Y, H:i:s"), date("d/m/Y, H:i:s"), $_POST['valeupart']);
-            // $parts = $parts->save();
             $account = new Accounts();
-            $account = $account->getOne(array(
-                "membre_1" => (int) $_POST['numcarnet'],
-                "membre_2" => (int) $_POST['numcarnet']
-            ), null, null, "OR");
+            $account = $account->getOne(
+                array(
+                    "membre_1" => (int) $_POST['numcarnet'],
+                    "membre_2" => (int) $_POST['numcarnet']
+                ),
+                null, 
+                null, 
+                "OR"
+            );
 
             $b = (array) $account->body;
             if(count($b) && $account->status === 200){
+                $parts->__constructor(null, (int) $b['id'], (int) $_POST['parts'], date("d/m/Y, H:i:s"), date("d/m/Y, H:i:s"), $_POST['valeupart']);
+                $parts = $parts->save();
+
                 
             }else echo($account->print());
             break;
