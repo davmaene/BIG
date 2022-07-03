@@ -13,17 +13,22 @@
               <div class="card-body">
                 <form role="form" class="text-start" id="form-part">
                     <div class="col-lg-12" id="member-1">
+                        <div class="col-lg-12">
+                            <span>Total à déposer</span>
+                            <h4 class="totaldposit">---</h4>
+                        </div>
+                        <div class="divider"></div>
                         <div class="input-group input-group-outline my-3">
                             <label class="form-label">Numéro de carnet ou numéro de membre</label>
                             <input type="number" name="numcarnet" class="form-control" required>
                         </div>
                         <div class="input-group input-group-outline my-3">
                             <label class="form-label">Valeur d'une part</label>
-                            <input type="text" name="valeupart" class="form-control" value="1320" required readonly>
+                            <input type="text" name="valeupart" class="form-control" required readonly>
                         </div>
                         <div class="input-group input-group-outline my-3">
                             <label class="form-label">Nombre de parts</label>
-                            <input type="text" name="parts" class="form-control" required>
+                            <input type="number" name="parts" class="form-control" required>
                         </div>
                         <div class="col-lg-12">
                             <div class="text-center">
@@ -44,19 +49,28 @@
   <?php #include("./components/footer.php") ?>
   <script src="./assets/js/plugins/toastr/toastr.min.js"></script>
   <script>
+    const valuepart = 1320;
     $("[type='checkbox']").on("change", (e) => {
        if($(e.currentTarget).attr("is-checked") === "true"){ 
             $(e.currentTarget).attr({"is-checked":"false"}) 
-            $("#member-2").addClass("d-none")
-            $("#member-1").addClass("col-lg-12")
+            $("#member-2").addClass("d-none");
+            $("#member-1").addClass("col-lg-12");
             $(".on-ischecked").addClass("d-none"); 
         } else {
             $(".on-ischecked").removeClass("d-none"); 
-            $(e.currentTarget).attr({"is-checked":"true"})
-            $("#member-2").removeClass("d-none")
-            $("#member-1").removeClass("col-lg-12").addClass("col-lg-6")
+            $(e.currentTarget).attr({"is-checked":"true"});
+            $("#member-2").removeClass("d-none");
+            $("#member-1").removeClass("col-lg-12").addClass("col-lg-6");
         }
     });
+
+    $("[name='valeupart']").on("focus", (e) => {
+        $(e.currentTarget).val(valuepart);
+    });
+
+    $('[name="parts"]').on("keyup", (e) => {
+        $(".totaldposit").text(valuepart * (!isNaN(parseInt(e.currentTarget.value)) ? parseInt(e.currentTarget.value) : 0));
+    })
 
     $("#form-addmember").on("submit", (e) => {
         e.preventDefault()
