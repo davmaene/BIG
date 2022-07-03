@@ -68,7 +68,7 @@
                         <div class="col-lg-12">
                             <div class="text-center">
                                 <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" id="btn-loader">
-                                    <span>Connexion</span>
+                                    <span>Enregistrer</span>
                                 </button>
                             </div>
                         </div>
@@ -82,6 +82,7 @@
     <!-- </div> -->
   </main>
   <?php #include("./components/footer.php") ?>
+  <script src="./assets/js/plugins/toastr/toastr.min.js"></script>
   <script>
     $("[type='checkbox']").on("change", (e) => {
        if($(e.currentTarget).attr("is-checked") === "true"){ 
@@ -117,13 +118,14 @@
                 switch (s['status']) {
                 case 200:
                     toastr.success('Le compte vient d\'être crée avec succès !');
-                    // window.location.replace("../");
+                    alert("Le compte vient d\'être crée avec succès !")
                     break;
                 default:
                     toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
                     break;
                 }
             } catch (error) {
+                console.log(error);
                 toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
             }
         })
