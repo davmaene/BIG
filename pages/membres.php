@@ -9,6 +9,11 @@
   $membres = getMemebres();
   $membres = $membres->status === 200 ? $membres->body : [];
 ?>
+<pre>
+  <?php
+    var_dump($membres[0]);
+  ?>
+</pre>
 <div class="container-fluid py-4">
   <div class="row">
     <div class="col-12">

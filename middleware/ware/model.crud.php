@@ -181,7 +181,6 @@
             $nclassname = $this->__createClass();
             $query = "SELECT * FROM `$nclassname`";
 
-            // if($clauses === null) return new Response(401, ["a getOne method must have a clause passed as parame"]);
             if($clauses !== null){
                 if(!is_array($clauses)) return new Response(401, ["the passed in getOne method param must be an array"]);
                 foreach ($properties as $key => $value) array_push($tabProperties, $key);
@@ -189,7 +188,6 @@
             }
             if($jointure !== null){
                 if(is_array($jointure)){
-                    // && isset($jointure["on"]) && isset($jointure["table"])
                     $cl = "";
 
                     foreach ($jointure as $k => $va) {
@@ -205,7 +203,6 @@
                                 ++$nblines;
                                 $value_ = is_numeric($value___) && strlen($value) < 3 ? $value___ : "'".$value___."'";
                                 $cl .= ((int) $nblines === count($va['clause'])) ? "$joiTable.$key = $value_" : "$joiTable.$key = $value_ AND "; 
-                                // " $joiTable.$key = $value_ ";
                             }
                         }
                         if(isset($va['joinedto'])){
@@ -224,14 +221,11 @@
                     $value_ = is_numeric($value) ? $value : "'".$value."'";
                     $query .= ((int) $nblines === count($clauses)) ? "$nclassname.$key = $value_" : "$nclassname.$key = $value_ AND ";            
                 }
-                // $query .= " AND `int_type_id` = 1";
             }
-            // else $query .= " WHERE `int_type_id` = 1";
 
             $rem = $conf->onFetchingOne($query, $nclassname);
             $results = [];
             if($rem !== 500){
-                // var_dump($rem[0]);
                 if(count($tabProperties) > 0){
                     for($i = 0; $i < count($rem); $i++){
                         foreach ($tabProperties as $key => $value) {
@@ -240,17 +234,15 @@
                         $item = (object) get_object_vars($this);
                         array_push($retResponse, $item);
                     }
-                    // count($retResponse) > 0 ? (count($retResponse) === 1 ? $retResponse[0] : $retResponse) : 
                     $results = $retResponse;
                     return new Response(200, $results); 
                 }else{
-                    // var_dump($properties);
-                    // return null;
                     for($i = 0; $i < count($rem); $i++){
                         foreach ($properties as $key => $value) {
                             $this->$key = $rem[$i][$key];
                         }
                         $item = (object) get_object_vars($this);
+                        $item->_alllines = $rem[$i];
                         array_push($retResponse, $item);
                     }
                     // count($retResponse) > 0 ? (count($retResponse) === 1 ? $retResponse[0] : $retResponse) :
