@@ -92,7 +92,6 @@ if($_GET['curl']){
 
                 $account = $acoount->save();
                 $b = $account->body;
-                // echo($account->print());
                 
                 if($account->status === 200 && 1){
                     $member1->__constructor(
