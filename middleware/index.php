@@ -130,7 +130,6 @@ if($_GET['curl']){
                 } else {
                     echo($account->print());
                 }
-
             }else{
                 $member = new Membres();
                 $acoount = new Accounts();
