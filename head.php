@@ -17,10 +17,15 @@
         
         function getMemebres($options = null){
             $membres = new Membres();
+            // "__tbl_accounts"
             $membres = $membres->getAll(null, 
                 [
                     array(
-                        "table" => "__tbl_accounts",
+                        "table" => new Accounts(),
+                        "on" => ["idaccount", "id"]
+                    ),
+                    array(
+                        "table" => new Parts(),
                         "on" => ["idaccount", "id"]
                     )
                 ]

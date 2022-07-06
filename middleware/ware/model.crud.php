@@ -177,6 +177,8 @@
             $retResponse = [];
             $thereisjointure = false;
 
+            $tablesOnJointure = [];
+
             $conf = new Config();
             $nclassname = $this->__createClass();
             $query = "SELECT * FROM `$nclassname`";
@@ -189,9 +191,11 @@
             if($jointure !== null){
                 if(is_array($jointure)){
                     $cl = "";
-
+                    $thereisjointure = true;
                     foreach ($jointure as $k => $va) {
-                        $joiTable = $va['table'];
+                        $o = $va['table'];
+                        array_push($tablesOnJointure, $o);
+                        $joiTable = $o->__createClass();
                         $handLeft = $va['on'][0];
                         $handRight = $va['on'][1];
                         // var_dump($va);
@@ -242,7 +246,18 @@
                             $this->$key = $rem[$i][$key];
                         }
                         $item = (object) get_object_vars($this);
-                        $item->_alllines = $rem[$i];
+                        if(is_array($jointure)){
+                            foreach ($tablesOnJointure as $toj) {
+                                $clname = ($toj->__createClass());
+                                $props = json_encode($toj); 
+                                $props = json_decode($props, true);
+
+                                foreach ($props as $key => $value) {
+                                    $toj->$key = $rem[$i][$key];
+                                }
+                                $item->$clname = $toj;
+                            }
+                        }
                         array_push($retResponse, $item);
                     }
                     // count($retResponse) > 0 ? (count($retResponse) === 1 ? $retResponse[0] : $retResponse) :
