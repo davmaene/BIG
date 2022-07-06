@@ -5,13 +5,15 @@ class Membres extends CRUD__{
     public $postnom;
     public $phone;
     public $pendingpassif;
+    public $idaccount;
     public $status;
     public $createdon;
 
-    public function __constructor($id, $nom, $postnom, $phone, $pendingpassif, $status, $createdon){
+    public function __constructor($id, $nom, $postnom, $phone, $pendingpassif, $idaccount, $status, $createdon){
         $this->id = $id;
         $this->nom = $nom;
         $this->postnom = $postnom;
+        $this->idaccount = $idaccount;
         $this->pendingpassif = $pendingpassif;
         $this->status = $status;
         $this->createdon = $createdon;

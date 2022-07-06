@@ -89,63 +89,70 @@ if($_GET['curl']){
             if(isset($_POST['checked'])){
                 $member1 = new Membres();
                 $member2 = new Membres();
+
+                $acoount = new Accounts();
+                $acoount->__constructor(null, 1, 1, 0, date("d/m/Y, H:i:s"));
+
+                $account = $acoount->save();
+                $b1 = $account->body;
+                // echo($account->print());
                 
-                $member1->__constructor(
-                    null, 
-                    strtolower($_POST['nom1']),
-                    strtolower($_POST['postnom1']),
-                    $_POST['phone1'],
-                    0,
-                    1,
-                    date("d/m/Y, H:i:s")
-                );
-                $member1 = $member1->save();
-                // save seconde member
-                $member2->__constructor(
-                    null, 
-                    strtolower($_POST['nom2']),
-                    strtolower($_POST['postnom2']),
-                    $_POST['phone2'],
-                    0,
-                    1,
-                    date("d/m/Y, H:i:s")
-                );
-                $member2 = $member2->save();
-
-                $b1 = $member1->body;
-                $b2 = $member2->body;
-
-                if($member1->status === 200 && $member2->status === 200){
-                    $acoount = new Accounts();
-                    $acoount->__constructor(null, 1, $b1->id, $b2->id, 1, 0, date("d/m/Y, H:i:s"));
-
-                    $account = $acoount->save();
-                    echo($account->print());
+                if($account->status === 200 && 1){
+                    $member1->__constructor(
+                        null, 
+                        strtolower($_POST['nom1']),
+                        strtolower($_POST['postnom1']),
+                        $_POST['phone1'],
+                        0,
+                        $b->id,
+                        1,
+                        date("d/m/Y, H:i:s")
+                    );
+                    $member1 = $member1->save();
+                    // save seconde member
+                    $member2->__constructor(
+                        null, 
+                        strtolower($_POST['nom2']),
+                        strtolower($_POST['postnom2']),
+                        $_POST['phone2'],
+                        0,
+                        $b->id,
+                        1,
+                        date("d/m/Y, H:i:s")
+                    );
+                    $member2 = $member2->save();
+                    if($member1->status === 200 && $member2->status === 200){
+                        $res = new Response(500, [$member1, $member2]);
+                        echo($res->print());
+                    }else{
+                        echo($member1->print());
+                    }
                 } else {
-                    echo($member1->print());
+                    echo($account->print());
                 }
 
             }else{
                 $member = new Membres();
-                $member->__constructor(
-                    null, 
-                    strtolower($_POST['nom1']),
-                    strtolower($_POST['postnom1']),
-                    $_POST['phone1'],
-                    0,
-                    1,
-                    date("d/m/Y, H:i:s")
-                );
-                $member = $member->save();
-                $b = $member->body;
-                if($member->status === 200){
-                    $acoount = new Accounts();
-                    $acoount->__constructor(null, 0, $b->id, 0, 1, 0, date("d/m/Y, H:i:s"));
+                $acoount = new Accounts();
+                $acoount->__constructor(null, 0, 1, 0, date("d/m/Y, H:i:s"));
 
-                    $account = $acoount->save();
-                    echo($account->print());
-                } else {
+                $account = $acoount->save();
+                $b = $account->body;
+                if($account->status === 200){
+                    $member->__constructor(
+                        null, 
+                        strtolower($_POST['nom1']),
+                        strtolower($_POST['postnom1']),
+                        $_POST['phone1'],
+                        0,
+                        $b->id,
+                        1,
+                        date("d/m/Y, H:i:s")
+                    );
+                    $member = $member->save();
                     echo($member->print());
+                } else {
+                    echo($account->print());
                 }
             }
             break;
