@@ -122,7 +122,7 @@ if($_GET['curl']){
                     );
                     $member2 = $member2->save();
                     if($member1->status === 200 && $member2->status === 200){
-                        $res = new Response(200, [$member1->body, $member2->body]);
+                        $res = new Response(200, [ $member1->body, $member2->body ]);
                         echo($res->print());
                     }else{
                         echo($member1->print());
