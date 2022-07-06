@@ -117,6 +117,7 @@
                 const s = JSON.parse(res);
                 switch (s['status']) {
                 case 200:
+                    $(e.currentTarget).trigger("reset");
                     toastr.success('Le compte vient d\'être crée avec succès !');
                     alert("Le compte vient d\'être crée avec succès !")
                     break;

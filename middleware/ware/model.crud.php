@@ -108,6 +108,7 @@
 
                 $query = "UPDATE $nclassname SET ";
                 $cls = " WHERE";
+                
                 foreach ($sets as $k => $val){
                     ++$nblines;
                     $value_ = is_numeric($val) ? $value : "'".$val."'";
@@ -121,8 +122,10 @@
                     $value_ = is_numeric($value) && strlen($value) < 3 ? $value : "'".$value."'";
                     $cls .= ((int) $nblines === count($clauses)) ? " `$key` = $value_" : " `$key` = $value_ AND ";            
                 }
+
                 $query .= $cls;
                 $resp = $conf->onRunningQuery($query, $nclassname);
+
                 if(is_bool($resp) && $resp === true){
                     $getit = $this->getOne($clauses, null, null, "AND");
                     return $getit;

@@ -23,10 +23,6 @@
                     array(
                         "table" => new Accounts(),
                         "on" => ["idaccount", "id"]
-                    ),
-                    array(
-                        "table" => new Parts(),
-                        "on" => ["idaccount", "id"]
                     )
                 ]
             );

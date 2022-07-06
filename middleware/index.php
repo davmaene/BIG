@@ -30,24 +30,30 @@ function _fillPhoneNumber($string){
     else return "()()()()()()()";
 }
 
+$valuepart = 1320;
+
 if($_GET['curl']){
     $curl = $_GET['curl'];
     switch ($curl) {
         case 'addpart':
-            $parts = new Parts();
-            $account = new Accounts();
-            $account = $account->getOne(array(
-                    "membre_1" => (int) $_POST['numcarnet'],
-                    "membre_2" => (int) $_POST['numcarnet']
-                ),null,null, "OR");
+            // $parts = new Parts();
+            $acc = new Accounts();
+            $account = $acc->getOne(array(
+                    "id" => (int) $_POST['numcarnet']
+                ),null,null, null);
 
             $b = (array) $account->body;
 
             if(count($b) && $account->status === 200){
-                $parts->__constructor(null, (int) $b['id'], (int) $_POST['parts'], date("d/m/Y, H:i:s"), date("d/m/Y, H:i:s"), $_POST['valeupart']);
-                $parts = $parts->save();
+                $acc = $acc->edit(array(
+                    "id" => (int) $_POST['numcarnet']
+                ), array(
+                    "parts" => (int) $b['parts'] + (int) $_POST['parts']
+                ));
 
-                echo($parts->print());
+                echo($acc->print());
+                // $parts->__constructor(null, (int) $b['id'], (int) $_POST['parts'], date("d/m/Y, H:i:s"), date("d/m/Y, H:i:s"), $_POST['valeupart']);
+                // $parts = $parts->save();
             }else{
                 $res = new Response(404, "le  numero du membre est erroné !");
                 echo($res->print());
@@ -88,7 +94,7 @@ if($_GET['curl']){
                 $member2 = new Membres();
 
                 $acoount = new Accounts();
-                $acoount->__constructor(null, 1, 1, 0, date("d/m/Y, H:i:s"));
+                $acoount->__constructor(null, 1, 0, $valuepart, 1, 0, date("d/m/Y, H:i:s"));
 
                 $account = $acoount->save();
                 $b = $account->body;
@@ -129,7 +135,7 @@ if($_GET['curl']){
             }else{
                 $member = new Membres();
                 $acoount = new Accounts();
-                $acoount->__constructor(null, 0, 1, 0, date("d/m/Y, H:i:s"));
+                $acoount->__constructor(null, 0, 0, $valuepart, 1, 0, date("d/m/Y, H:i:s"));
 
                 $account = $acoount->save();
                 $b = $account->body;

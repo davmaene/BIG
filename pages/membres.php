@@ -11,7 +11,7 @@
 ?>
 <pre>
   <?php
-    var_dump($membres[0]);
+    var_dump($membres);
   ?>
 </pre>
 <div class="container-fluid py-4">

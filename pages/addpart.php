@@ -104,6 +104,7 @@
                 const s = JSON.parse(res);
                 switch (s['status']) {
                     case 200:
+                        $(e.currentTarget).trigger("reset");
                         toastr.success('Opération effectuée avec succès !');
                         alert("Opération effectuée avec succès !");
                         break;
