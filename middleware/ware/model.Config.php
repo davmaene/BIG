@@ -111,7 +111,7 @@ class Config implements Init {
     public function onConnexion(){
         $host = $this->_host;
         $dialect = $this->_dialect;
-        if($this->db === null){
+        if(1){
             try {
                 $conn = new PDO("$dialect:host=$host;dbname=$this->_dbname", "$this->_username", "$this->_password");
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
