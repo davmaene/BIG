@@ -43,9 +43,6 @@ if($_GET['curl']){
 
             $b = (array) $account->body;
 
-            // var_dump($account);
-            // return 0;
-           
             if(count($b) && $account->status === 200){
                 $parts->__constructor(null, (int) $b['id'], (int) $_POST['parts'], date("d/m/Y, H:i:s"), date("d/m/Y, H:i:s"), $_POST['valeupart']);
                 $parts = $parts->save();
