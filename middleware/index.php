@@ -94,7 +94,7 @@ if($_GET['curl']){
                 $acoount->__constructor(null, 1, 1, 0, date("d/m/Y, H:i:s"));
 
                 $account = $acoount->save();
-                $b1 = $account->body;
+                $b = $account->body;
                 // echo($account->print());
                 
                 if($account->status === 200 && 1){
@@ -122,7 +122,7 @@ if($_GET['curl']){
                     );
                     $member2 = $member2->save();
                     if($member1->status === 200 && $member2->status === 200){
-                        $res = new Response(500, [$member1, $member2]);
+                        $res = new Response(200, [$member1->body, $member2->body]);
                         echo($res->print());
                     }else{
                         echo($member1->print());
