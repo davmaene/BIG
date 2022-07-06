@@ -30,6 +30,7 @@
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Membre</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Numéro de carnet</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nombre de parts</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Statut</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Membre depuis</th>
                   <!-- <th class="text-secondary opacity-7"></th> -->
@@ -38,6 +39,7 @@
               <tbody>
                 <?php 
                   foreach ($membres as $value) {
+                    $acc = $value->__tbl_accounts;
                 ?>
                 <tr>
                   <td>
@@ -57,6 +59,12 @@
                     <p class="text-xs font-weight-bold mb-0">Numéro de carnet</p>
                     <p class="text-xs text-secondary mb-0">
                       <h6><?= $value->id ?></h6>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0">Nombre des parts</p>
+                    <p class="text-xs text-secondary mb-0">
+                      <h6><?= $acc->parts ?></h6>
                     </p>
                   </td>
                   <td class="align-middle text-center text-sm">
