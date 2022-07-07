@@ -36,6 +36,10 @@ $valuepartsocial = 4;
 if($_GET['curl']){
     $curl = $_GET['curl'];
     switch ($curl) {
+        case 'paiementcredit':
+            break;
+        case 'octroitcredit':
+        break;
         case 'contribution':
             // $parts = new Parts();
             $acc = new Accounts();

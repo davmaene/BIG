@@ -10,6 +10,8 @@ class Credits extends CRUD__{
     public $updatedon;
     public $status;
 
+    public function __construct() {}
+        
     public function __constructor($id, $idaccount, $montantdu, $montantpaye, $devise, $createdon, $updatedon, $status){
         $this->id = $id;
         $this->idaccount = $idaccount;
