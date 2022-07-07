@@ -11,6 +11,7 @@ include_once("models/cl.admin.php");
 include_once("models/cl.member.php");
 include_once("models/cl.accounts.php");
 include_once("models/cl.parts.php");
+include_once("models/cl.typecredit.php");
 
 function _listRubriques($where = null){
     $rbqs = new Rubriques();
@@ -36,7 +37,11 @@ $valuepartsocial = 4;
 if($_GET['curl']){
     $curl = $_GET['curl'];
     switch ($curl) {
-        case 'loadtypescredit':
+        case 'typecredit':
+            $typecredit = new Typecredits();
+            $typecredit = $typecredit->getAll();
+
+            echo($typecredit->print());
             break;
         case 'paiementcredit':
             break;
