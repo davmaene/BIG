@@ -9,12 +9,13 @@
   $membres = getMemebres();
   $membres = $membres->status === 200 ? $membres->body : [];
 
-  $parts = getSoldeContribution(array());
+  $parts = getSoldeContribution("parts");
+  $csocials = getSoldeContribution("socials");
 //   var_dump($parts);
 ?>
 <div class="container-fluid py-4">
     <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
             <div class="card-header p-3 pt-2">
                 <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute d-flex justify-content-center">
@@ -23,16 +24,16 @@
                 </div>
                 <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Total membres</p>
-                <h4 class="mb-0"><?= count($membres) ?></h4>
+                <h6 class="mb-0"><?= count($membres) ?></h6>
                 </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-                <p class="mb-0"><span class="text-success text-sm font-weight-bolder"><?= count($membres) ?> </span>nombre total de tous les membres</p>
+                <p class="mb-0"><span class="text-success text-sm font-weight-bolder"><?= count($membres) ?> </span><small>nombre de membres</small></p>
             </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
             <div class="card-header p-3 pt-2">
                 <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute d-flex justify-content-center">
@@ -40,17 +41,17 @@
                 <span style="font-size: 27px; align-self: center;" class="fa fa-dollar text-white"></span>
                 </div>
                 <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Solde en crédit</p>
-                <h4 class="mb-0">0$</h4>
+                <p class="text-sm mb-0 text-capitalize">Crédit</p>
+                    <h6 class="mb-0">0$</h6>
                 </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-                <p class="mb-0"><span class="text-success text-sm font-weight-bolder">0 </span>nombre de crédits en cours </p>
+                <p class="mb-0"><span class="text-success text-sm font-weight-bolder">0 </span><small>Totla crédits en cours</small> </p>
             </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
             <div class="card-header p-3 pt-2">
                 <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute d-flex justify-content-center">
@@ -58,8 +59,8 @@
                     <span style="font-size: 27px; align-self: center;" class="fa fa-heart text-white"></span>
                 </div>
                 <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Solde en parts</p>
-                <h4 class="mb-0"><?= $parts * 1320 ?>$</h4>
+                <p class="text-sm mb-0 text-capitalize">Parts</p>
+                <h6 class="mb-0"><?= $parts * 1320 ?>$</h6>
                 </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -68,7 +69,25 @@
             </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6">
+        <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+            <div class="card-header p-3 pt-2">
+                <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute d-flex justify-content-center">
+                    <!-- <i class="material-icons opacity-10">person</i> -->
+                    <span style="font-size: 27px; align-self: center;" class="fa fa-heart text-white"></span>
+                </div>
+                <div class="text-end pt-1">
+                <p class="text-sm mb-0 text-capitalize">Sociales</p>
+                <h6 class="mb-0"><?= $csocials * 5 ?>$</h6>
+                </div>
+            </div>
+            <hr class="dark horizontal my-0">
+            <div class="card-footer p-3">
+                <p class="mb-0"><span class="text-danger text-sm font-weight-bolder"><?= $csocials ?></span> <small>nombre de parts</small></p>
+            </div>
+            </div>
+        </div>
+        <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
             <div class="card-header p-3 pt-2">
                 <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute d-flex justify-content-center">
@@ -76,13 +95,13 @@
                     <span style="font-size: 27px; align-self: center;" class="fa fa-legal text-white"></span>
                 </div>
                 <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Solde en panalité</p>
-                <h4 class="mb-0">0$</h4>
+                <p class="text-sm mb-0 text-capitalize">Penalité</p>
+                <h6 class="mb-0">0$</h6>
                 </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-                <p class="mb-0"><span class="text-success text-sm font-weight-bolder">0 </span>nombre de penalité</p>
+                <p class="mb-0"><span class="text-success text-sm font-weight-bolder"><small>0 </span>nombre de penalité</small></p>
             </div>
             </div>
         </div>

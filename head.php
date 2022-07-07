@@ -38,7 +38,7 @@
             return $parts;
         }
 
-        function getSoldeContribution($options){
+        function getSoldeContribution($categ){
             $nmbofparts = 0;
             $confs = new Config();
             $parts = new Accounts();
@@ -49,7 +49,7 @@
             //     ""
             // );
             foreach ((array) $parts->body as $value) {
-              $nmbofparts = $nmbofparts + $value->parts;
+              $nmbofparts = $nmbofparts + $value->$categ;
             }
 
             return $nmbofparts;
