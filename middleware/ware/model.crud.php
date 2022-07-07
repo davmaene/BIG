@@ -252,12 +252,14 @@
                         if(is_array($jointure)){
                             $J = "";
                             $clname = "";
-                            $temp = ($item);
 
                             foreach ($tablesOnJointure as $toj) {
                                 $clname = ($toj->__createClass());
                                 $props = json_encode($toj); 
                                 $props = json_decode($props, true);
+
+                                $temp = ($item->$clname = $toj);
+
 
                                 foreach ($props as $key => $value) {
                                     $toj->$key = $rem[$i][$key];
@@ -267,9 +269,9 @@
                                 // temp[$clname] = $J;
                                 // echo("<br/>-----------------------------------<br/>");
                                 // echo(" rem idaccount =>  ". $rem[$i]['idaccount']);
-                                echo("<br/>-----------------------------------<br/>");
-                                var_dump($temp);
-                                echo("<br/>-----------------------------------<br/>");
+                                // echo("<br/>-----------------------------------<br/>");
+                                // var_dump($temp);
+                                // echo("<br/>-----------------------------------<br/>");
                                 array_push($retResponse, $temp);
                             }
                             // $tmp = $item;
