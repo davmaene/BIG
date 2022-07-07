@@ -36,6 +36,30 @@ $valuepartsocial = 4;
 if($_GET['curl']){
     $curl = $_GET['curl'];
     switch ($curl) {
+        case 'contribution':
+            // $parts = new Parts();
+            $acc = new Accounts();
+            $account = $acc->getOne(array(
+                    "id" => (int) $_POST['numcarnet']
+                ),null,null, null);
+
+            $b = (array) $account->body;
+
+            if(count($b) && $account->status === 200){
+                $acc = $acc->edit(array(
+                    "id" => (int) $_POST['numcarnet']
+                ), array(
+                    "socials" => (int) $b['socials'] + (int) $_POST['parts']
+                ));
+
+                echo($acc->print());
+                // $parts->__constructor(null, (int) $b['id'], (int) $_POST['parts'], date("d/m/Y, H:i:s"), date("d/m/Y, H:i:s"), $_POST['valeupart']);
+                // $parts = $parts->save();
+            }else{
+                $res = new Response(404, "le  numero du membre est erroné !");
+                echo($res->print());
+            }
+            break;
         case 'addpart':
             // $parts = new Parts();
             $acc = new Accounts();
