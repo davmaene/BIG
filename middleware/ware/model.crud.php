@@ -274,7 +274,6 @@
                         }else{
                             array_push($retResponse, $item);
                         }
-
                     }
                     // count($retResponse) > 0 ? (count($retResponse) === 1 ? $retResponse[0] : $retResponse) :
                     $results = $retResponse;
