@@ -250,7 +250,9 @@
                         }
                         $item = (object) get_object_vars($this);
                         if(is_array($jointure)){
+                            $J = "";
                             $clname = "";
+
                             foreach ($tablesOnJointure as $toj) {
 
                                 $clname = ($toj->__createClass());
@@ -258,22 +260,26 @@
                                 $props = json_decode($props, true);
 
                                 foreach ($props as $key => $value) {
+                                    // if($key === "id"){
                                     $toj->$key = $rem[$i][$key];
+                                    // }
                                 }
 
-                                $item->$clname = $toj;
-                                                            
+                                $J = ($toj);  
+                                $item = $item->$clname = $J;
                                 echo("<br/>-----------------------------------<br/>");
                                 echo(" rem idaccount =>  ". $rem[$i]['idaccount']);
                                 echo("<br/>-----------------------------------<br/>");
                                 var_dump($toj);
                                 echo("<br/>-----------------------------------<br/>");
-
-                                array_push($retResponse, $item);
                             }
+                            // $tmp = $item;
+                            array_push($retResponse, $item);
+
                         }else{
                             array_push($retResponse, $item);
                         }
+
                     }
                     // count($retResponse) > 0 ? (count($retResponse) === 1 ? $retResponse[0] : $retResponse) :
                     $results = $retResponse;
