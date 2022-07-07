@@ -252,6 +252,7 @@
                         if(is_array($jointure)){
                             $J = "";
                             $clname = "";
+                            $temp = $item;
 
                             foreach ($tablesOnJointure as $toj) {
 
@@ -260,9 +261,7 @@
                                 $props = json_decode($props, true);
 
                                 foreach ($props as $key => $value) {
-                                    // if($key === "id"){
                                     $toj->$key = $rem[$i][$key];
-                                    // }
                                 }
 
                                 $J = ($toj);  
@@ -272,10 +271,9 @@
                                 echo("<br/>-----------------------------------<br/>");
                                 var_dump($toj);
                                 echo("<br/>-----------------------------------<br/>");
+                                array_push($retResponse, $temp);
                             }
                             // $tmp = $item;
-                            array_push($retResponse, $item);
-
                         }else{
                             array_push($retResponse, $item);
                         }
