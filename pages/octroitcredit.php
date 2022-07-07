@@ -93,7 +93,7 @@
             })
         })
         $("[type='checkbox']").on("change", (e) => {
-        if($(e.currentTarget).attr("is-checked") === "true"){ 
+            if($(e.currentTarget).attr("is-checked") === "true"){ 
                 $(e.currentTarget).attr({"is-checked":"false"}) 
                 $("#member-2").addClass("d-none");
                 $("#member-1").addClass("col-lg-12");
@@ -113,6 +113,25 @@
         $('[name="parts"]').on("keyup", (e) => {
            if(pts.length > 0){
             // $(".totaldposit").text(`${1 * (!isNaN(parseInt(e.currentTarget.value)) ? parseInt(e.currentTarget.value) : 0)}$ ( Dollars )`);
+            const typecredit = $('[name="typecredit"]').val();
+            if(typecredit !== "" && typecredit !== " "){
+                switch (typecredit) {
+                    case 1:
+                        
+                        break;
+
+                    case 2:
+                        
+                        break;
+                    default:
+                        alert("Séléctioner le type de crédit avant de continuer !")
+                        toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
+                        break;
+                }
+            }else{
+                alert("Séléctioner le type de crédit avant de continuer !")
+                toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
+            }
            }else{
                 alert("Une erreur vient de se produire ! Veuillez réessayer plus tard!")
                 toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
