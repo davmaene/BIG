@@ -40,7 +40,7 @@
         function getSoldeContribution($options){
             $nmbofparts = 0;
             $confs = new Config();
-            $parts = new Parts();
+            $parts = new Accounts();
             $parts = $parts->getAll();
 
             // $res = $confs->onFetchingOne(
