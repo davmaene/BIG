@@ -137,9 +137,9 @@
         </div>
         <div class="col-lg-2">
             <div class="card">
-                <button class="btn btn-success">
+                <a href="?page=octroitcredit" class="btn btn-success">
                     <span>Octroit crédit</span>
-                </button>
+                </a>
             </div>
         </div>
         <div class="col-lg-2">
