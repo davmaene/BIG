@@ -26,7 +26,8 @@
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Membre</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Numéro de carnet</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nombre de parts</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Valeurs parst</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Parts socials</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Valeurs parts</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Statut</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Membre depuis</th>
                   <!-- <th class="text-secondary opacity-7"></th> -->
@@ -64,7 +65,7 @@
                     </p>
                   </td>
                   <td>
-                    <p class="text-xs font-weight-bold mb-0">Part socials</p>
+                    <p class="text-xs font-weight-bold mb-0">Parts socials</p>
                     <p class="text-xs text-secondary mb-0">
                       <h6><?= $acc[1]['socials'] ?></h6>
                     </p>
