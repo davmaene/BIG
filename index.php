@@ -80,7 +80,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white bg-gradient-primary-cts" href="?page=contributions">
+          <a class="nav-link text-white bg-gradient-primary-ctss" href="?page=contributionssocial">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <!-- <i class="material-icons opacity-10">view_in_ar</i> -->
               <span class="fa fa-heart"></span>

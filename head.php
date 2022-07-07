@@ -22,7 +22,8 @@
                 [
                     array(
                         "table" => new Accounts(),
-                        "on" => ["idaccount", "id"]
+                        "on" => ["idaccount", "id"],
+                        "columns" => ["parts", "social"]
                     )
                 ]
             );

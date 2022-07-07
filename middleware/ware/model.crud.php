@@ -201,6 +201,7 @@
                         $joiTable = $o->__createClass();
                         $handLeft = $va['on'][0];
                         $handRight = $va['on'][1];
+                        $culomns= $va['columns'];
                         // var_dump($va);
                         if(isset($va['clause'])){
 
@@ -249,36 +250,31 @@
                             $this->$key = $rem[$i][$key];
                         }
                         $item = (object) get_object_vars($this);
-                        if(is_array($jointure)){
-                            $J = "";
-                            $clname = "";
 
-                            foreach ($tablesOnJointure as $toj) {
+                        if(is_array($jointure)){
+                            $J = [];
+                            $clname = "";
+                            $culomn = $culomns[0];
+
+                            for ($o = 0; $o < count($tablesOnJointure); $o++) {
+                                $toj = $tablesOnJointure[$o];
                                 $clname = ($toj->__createClass());
                                 $props = json_encode($toj); 
                                 $props = json_decode($props, true);
-
-                                $temp = ($item->$clname = $toj);
-
 
                                 foreach ($props as $key => $value) {
                                     $toj->$key = $rem[$i][$key];
                                 }
 
-                                $J = ($toj);  
-                                // temp[$clname] = $J;
-                                // echo("<br/>-----------------------------------<br/>");
-                                // echo(" rem idaccount =>  ". $rem[$i]['idaccount']);
-                                // echo("<br/>-----------------------------------<br/>");
-                                // var_dump($temp);
-                                // echo("<br/>-----------------------------------<br/>");
-                                array_push($retResponse, $temp);
+                                $item->$clname = array(
+                                    $culomn => $toj->$culomn
+                                );
                             }
+                            array_push($retResponse, $item);
                             // $tmp = $item;
                         }else{
                             array_push($retResponse, $item);
                         }
-
                     }
                     // count($retResponse) > 0 ? (count($retResponse) === 1 ? $retResponse[0] : $retResponse) :
                     $results = $retResponse;

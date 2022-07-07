@@ -31,6 +31,7 @@ function _fillPhoneNumber($string){
 }
 
 $valuepart = 1320;
+$valuepartsocial = 4;
 
 if($_GET['curl']){
     $curl = $_GET['curl'];
@@ -94,7 +95,7 @@ if($_GET['curl']){
                 $member2 = new Membres();
 
                 $acoount = new Accounts();
-                $acoount->__constructor(null, 1, 0, $valuepart, 1, 0, date("d/m/Y, H:i:s"));
+                $acoount->__constructor(null, 1, 0, 0, $valuepart, $valuepartsocial,  1, 0, date("d/m/Y, H:i:s"));
 
                 $account = $acoount->save();
                 $b = $account->body;
@@ -135,7 +136,7 @@ if($_GET['curl']){
             }else{
                 $member = new Membres();
                 $acoount = new Accounts();
-                $acoount->__constructor(null, 0, 0, $valuepart, 1, 0, date("d/m/Y, H:i:s"));
+                $acoount->__constructor(null, 1, 0, 0, $valuepart, $valuepartsocial,  1, 0, date("d/m/Y, H:i:s"));
 
                 $account = $acoount->save();
                 $b = $account->body;
