@@ -201,7 +201,7 @@
                         $joiTable = $o->__createClass();
                         $handLeft = $va['on'][0];
                         $handRight = $va['on'][1];
-                        $culomns= $va['columns'];
+                        $columns= $va['columns'];
                         // var_dump($va);
                         if(isset($va['clause'])){
 
@@ -254,8 +254,7 @@
                         if(is_array($jointure)){
                             $J = [];
                             $clname = "";
-                            $culomn = $culomns[0];
-
+                            
                             for ($o = 0; $o < count($tablesOnJointure); $o++) {
                                 $toj = $tablesOnJointure[$o];
                                 $clname = ($toj->__createClass());
@@ -266,9 +265,16 @@
                                     $toj->$key = $rem[$i][$key];
                                 }
 
-                                $item->$clname = array(
-                                    $culomn => $toj->$culomn
-                                );
+                                $clns = [];
+
+                                foreach ($columns as $key => $valc) {
+                                    array_push($clns, 
+                                        array(
+                                            $valc => $toj->$valc
+                                        )
+                                    );
+                                }
+                                $item->$clname = $clns;
                             }
                             array_push($retResponse, $item);
                             // $tmp = $item;

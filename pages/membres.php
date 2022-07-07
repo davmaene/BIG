@@ -60,7 +60,13 @@
                   <td>
                     <p class="text-xs font-weight-bold mb-0">Nombre des parts</p>
                     <p class="text-xs text-secondary mb-0">
-                      <h6><?= $acc['parts'] ?></h6>
+                      <h6><?= $acc[0]['parts'] ?></h6>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0">Part socials</p>
+                    <p class="text-xs text-secondary mb-0">
+                      <h6><?= $acc[1]['socials'] ?></h6>
                     </p>
                   </td>
                   <td>

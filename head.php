@@ -23,7 +23,7 @@
                     array(
                         "table" => new Accounts(),
                         "on" => ["idaccount", "id"],
-                        "columns" => ["parts", "social"]
+                        "columns" => ["parts", "socials"]
                     )
                 ]
             );
