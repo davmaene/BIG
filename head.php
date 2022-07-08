@@ -10,6 +10,11 @@
     // END INCLUSION MODELS
     if(isset($_SESSION['_bigUser'])){
 
+        function _numDaysInMonth($month){
+            $number = cal_days_in_month(CAL_GREGORIAN, $month, date("Y")); 
+            return $number;
+        }
+
         function getSessionName(){
             $session = base64_decode($_SESSION['_bigUser']);
             $session = (json_decode($session));

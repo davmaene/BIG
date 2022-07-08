@@ -20,11 +20,11 @@
     $creditTable = $credits['table'];
 
 ?>
-<pre>
+<!-- <pre>
     <?php 
         var_dump($creditTable);
     ?>
-</pre>
+</pre> -->
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
@@ -162,7 +162,7 @@
         </div>
     </div>
     <div class="row mb-4 mt-4">
-        <div class="col-lg-6 col-md-6 mb-md-0 mb-4">
+        <div class="col-lg-7 col-md-6 mb-md-0 mb-4">
             <div class="card">
             <div class="card-header pb-0">
                 <div class="row">
@@ -196,12 +196,13 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Montant de crédit</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Montant payé</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Montant du</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Taux d'interet</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
                     </tr>
                     </thead>
                     <tbody>
                         <?php 
                             foreach ($creditTable as $key => $value) {
+                                global $typecredy;
                                 $membres = isset($value->__tbl_membres) ? $value->__tbl_membres : [];
                                 $typecredy = $typec->getOne(
                                     array(
@@ -230,7 +231,7 @@
                                 <span class="text-xs font-weight-bold"> <?= $value->montantdu ?>$</span>
                             </td>
                             <td class="align-middle text-center text-sm">
-                                <span class="text-xs font-weight-bold"> <?= $typecredy->penalite ?></span>
+                                <span class="text-xs font-weight-bold"> <?= $value->createdon ?></span>
                             </td>
                         </tr>
                         <?php
@@ -242,7 +243,7 @@
             </div>
             </div>
         </div>
-        <div class="col-lg-6 col-md-6 mb-md-0 mb-4">
+        <div class="col-lg-5 col-md-6 mb-md-0 mb-4">
             <div class="card">
             <div class="card-header pb-0">
                 <div class="row">
