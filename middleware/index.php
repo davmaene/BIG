@@ -55,12 +55,11 @@ if($_GET['curl']){
                         "idaccount" => (int) $_POST['numcarnet']
                     ),
                     array(
-                        "montantdu" =>  22,//(int) $b->montantdu - (int) $_POST['montant'],
+                        "montantdu" =>  $b->montantdu - $_POST['montant'],
                         "updatedon" => $date,
-                        "montantpaye" => 433//$b->montantpaye + $_POST['montant']
+                        "montantpaye" => $b->montantpaye + $_POST['montant']
                     )
                 );
-                // echo("0000000000000000000000000000000000");
                 echo($creditS->print());
             }else{
                 $res = new Response(404, "le  numero du membre est erroné !");
