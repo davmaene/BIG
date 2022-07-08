@@ -11,6 +11,8 @@
 
   $parts = getSoldeContribution("parts");
   $csocials = getSoldeContribution("socials");
+
+  $credits = getSoldeCredit("montantdu");
 //   var_dump($parts);
 ?>
 <div class="container-fluid py-4">
@@ -42,7 +44,7 @@
                 </div>
                 <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Crédit</p>
-                    <h6 class="mb-0">0$</h6>
+                    <h6 class="mb-0"><?= $credits ?>$</h6>
                 </div>
             </div>
             <hr class="dark horizontal my-0">

@@ -9,6 +9,7 @@
     }
     // END INCLUSION MODELS
     if(isset($_SESSION['_bigUser'])){
+
         function getSessionName(){
             $session = base64_decode($_SESSION['_bigUser']);
             $session = (json_decode($session));
@@ -49,6 +50,21 @@
             //     ""
             // );
             foreach ((array) $parts->body as $value) {
+              $nmbofparts = $nmbofparts + $value->$categ;
+            }
+
+            return $nmbofparts;
+        }
+
+        function getSoldeCredit($categ){
+            $nmbofparts = 0;
+            $Credit = new Credits();
+
+            $Credit = $Credit->getAll(array(
+                "status" => 1
+            ));
+
+            foreach ((array) $Credit->body as $value) {
               $nmbofparts = $nmbofparts + $value->$categ;
             }
 
