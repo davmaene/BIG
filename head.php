@@ -60,9 +60,11 @@
             $nmbofparts = 0;
             $Credit = new Credits();
 
-            $Credit = $Credit->getAll(array(
-                "status" => 1
-            ));
+            $Credit = $Credit->getAll(
+                array(
+                    "status" => 1
+                )
+            );
 
             foreach ((array) $Credit->body as $value) {
               $nmbofparts = $nmbofparts + $value->$categ;
