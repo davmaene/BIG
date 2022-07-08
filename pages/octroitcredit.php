@@ -260,7 +260,7 @@
                         case 200:
                             $(e.currentTarget).trigger("reset");
                             toastr.success('Opération effectuée avec succès !');
-                            alert("Opération effectuée avec succès !");
+                            // alert("Opération effectuée avec succès !");
                             writeOutput({
                                 title: "Octroit crédit", 
                                 message: `Opération effectuée avec succès !`,
@@ -270,10 +270,20 @@
                             break;
                         case 404:
                             toastr.success('Le numéro du membre on du carnet est incorrecte !');
-                            alert("Le numéro du membre on du carnet est incorrecte !");
+                            // alert("Le numéro du membre on du carnet est incorrecte !");
+                            writeOutput({
+                                title: "Octroit crédit", 
+                                message: `Le numéro du membre on du carnet est incorrecte !`,
+                                type: "danger"
+                            })
                             break;
                         default:
-                            alert("Une erreur vient de se produire ! Veuillez réessayer plus tard!")
+                            // alert("Une erreur vient de se produire ! Veuillez réessayer plus tard!")
+                            writeOutput({
+                                title: "Octroit crédit", 
+                                message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
+                                type: "danger"
+                            })
                             toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
                             break;
                     }
