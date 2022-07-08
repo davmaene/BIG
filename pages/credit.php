@@ -3,7 +3,7 @@
       <span class="mask bg-gradient-dark opacity-6"></span> -->
       <div class="container my-auto">
         <div class="row">
-          <div class="col-lg-8 col-md-8 col-12 mx-auto">
+          <div class="col-lg-6 col-md-8 col-12 mx-auto">
             <div class="card z-index-0 fadeIn3 fadeInBottom">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
@@ -14,7 +14,7 @@
                 <form role="form" class="text-start" id="form-part">
                     <div class="col-lg-12" id="member-1">
                         <div class="w-100" id="output"></div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-lg-3">
                                 <span>Montant</span>
                                 <h4 class="totaldposit">---</h4>
@@ -31,7 +31,7 @@
                                 <span>Total à rem.</span>
                                 <h4 class="totaldremb">---</h4>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="divider"></div>
 
@@ -92,6 +92,7 @@
 
         const _forceUpdate = (e) => {
             // if(pts.length > 0){
+            $("#output").html("")
             let typecredit = $('[name="typecredit"]').val();
             if(typecredit !== "" && typecredit !== " "){
                 typecredit = parseInt(typecredit);
@@ -119,7 +120,7 @@
 
                         }else{
                             writeOutput({
-                                title: "Octroit crédit", 
+                                title: "Remboursement crédit", 
                                 message: `Le montant démandé doit etre dans l'interval de ${configs['min'] + 1} et  ${configs['max']} $`,
                                 type: "danger"
                             })
@@ -146,8 +147,9 @@
                             $(".totaldremb").text(`${total}$`);
 
                         }else{
+                            $("#output").html("");
                             writeOutput({
-                                title: "Octroit crédit", 
+                                title: "Remboursement crédit", 
                                 message: `Le montant démandé doit etre dans l'interval de ${config['min'] + 1} et  ${config['max']} $`,
                                 type: "danger"
                             })
@@ -155,23 +157,25 @@
 
                         break;
                     default:
+                        $("#output").html("");
                         writeOutput({
-                            title: "Octroit crédit", 
+                            title: "Remboursement crédit", 
                             message: `Séléctioner le type de crédit avant de continuer !`,
                             type: "danger"
                         })
                         break;
                 }
             }else{
+                $("#output").html("");
                 writeOutput({
-                    title: "Octroit crédit", 
+                    title: "Remboursement crédit", 
                     message: `Séléctioner le type de crédit avant de continuer !`,
                     type: "danger"
                 })
             }
             // }else{
             //         writeOutput({
-            //             title: "Octroit crédit", 
+            //             title: "Remboursement crédit", 
             //             message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
             //             type: "danger"
             //         })
@@ -195,7 +199,7 @@
         //                 default:
         //                     alert(1)
         //                     writeOutput({
-        //                         title: "Octroit crédit", 
+        //                         title: "Remboursement crédit", 
         //                         message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
         //                         type: "danger"
         //                     })
@@ -206,7 +210,7 @@
         //             $("#loader-sp").remove()
         //             alert(1)
         //             writeOutput({
-        //                 title: "Octroit crédit", 
+        //                 title: "Remboursement crédit", 
         //                 message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
         //                 type: "danger"
         //             })
@@ -249,6 +253,7 @@
 
         $("#form-part").on("submit", (e) => {
             e.preventDefault()
+            $("#output").html("")
             const ldr = document.createElement("span");
             $(ldr).attr({
                 id: "loader-sp",
@@ -270,7 +275,7 @@
                             toastr.success('Opération effectuée avec succès !');
                             // alert("Opération effectuée avec succès !");
                             writeOutput({
-                                title: "Octroit crédit", 
+                                title: "Remboursement crédit", 
                                 message: `Opération effectuée avec succès !`,
                                 type: "success"
                             })
@@ -280,7 +285,7 @@
                             toastr.success('Le numéro du membre on du carnet est incorrecte !');
                             // alert("Le numéro du membre on du carnet est incorrecte !");
                             writeOutput({
-                                title: "Octroit crédit", 
+                                title: "Remboursement crédit", 
                                 message: `Le numéro du membre on du carnet est incorrecte !`,
                                 type: "danger"
                             })
@@ -288,7 +293,7 @@
                         default:
                             // alert("Une erreur vient de se produire ! Veuillez réessayer plus tard!")
                             writeOutput({
-                                title: "Octroit crédit", 
+                                title: "Remboursement crédit", 
                                 message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
                                 type: "danger"
                             })

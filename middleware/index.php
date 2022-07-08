@@ -48,20 +48,20 @@ if($_GET['curl']){
             ), null, null, null);
 
             $b = $credi->body;
-            if(count($b) && 1){
-                $credit = $credit->edit(
+            if(count((array) $b) && $credi->status === 200){
+                $creditS = new Credits();
+                $creditS = $creditS->edit(
                     array(
-                        "idacccount" => $_POST['numcarnet']
+                        "idaccount" => (int) $_POST['numcarnet']
                     ),
                     array(
-                        "montantdu" => $b->montantdu - $_POST['montant'],
+                        "montantdu" =>  22,//(int) $b->montantdu - (int) $_POST['montant'],
                         "updatedon" => $date,
-                        "montantpaye" => $b->montantpaye + $_POST['montant']
+                        "montantpaye" => 433//$b->montantpaye + $_POST['montant']
                     )
                 );
-
-                echo($credi->print());
-
+                // echo("0000000000000000000000000000000000");
+                echo($creditS->print());
             }else{
                 $res = new Response(404, "le  numero du membre est erroné !");
                 echo($res->print());

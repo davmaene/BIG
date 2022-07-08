@@ -107,12 +107,12 @@
                 foreach ($sets as $key => $value) if(!in_array($key, $tabProperties, true)) return new Response(401, ["there is no property :: $key :: in Instance :: $objectName :: bad params in SETS"]);
 
                 $query = "UPDATE $nclassname SET ";
-                $cls = " WHERE";
+                $cls = " WHERE ";
 
                 foreach ($sets as $k => $val){
                     ++$nblines;
                     $value_ = is_numeric($val) ? $value : "'".$val."'";
-                    $query .= ((int) $nblines === count($sets)) ? "`$key` = $value_" : "`$key` = $value_ AND "; 
+                    $query .= ((int) $nblines === count($sets)) ? "`$k` = $value_" : "`$k` = $value_ , "; 
                 }
 
                 $nblines = 0; // reinitilaize compter 
