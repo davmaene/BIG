@@ -215,8 +215,8 @@
                         }
                         if(isset($va['joinedto'])){
                             $joinedto = $va['joinedto'];
-                            $query .= " JOIN `$joiTable` ON $joiTable.$handRight = $joinedto.$handLeft ";
-                        }else $query .= " JOIN `$joiTable` ON $joiTable.$handRight = $nclassname.$handLeft ";
+                            $query .= " INNER JOIN `$joiTable` ON $joiTable.$handRight = $joinedto.$handLeft ";
+                        }else $query .= " INNER JOIN `$joiTable` ON $joiTable.$handRight = $nclassname.$handLeft ";
                     }
                     $query .= " $cl ";
                 }

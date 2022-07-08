@@ -50,9 +50,21 @@ if($_GET['curl']){
         case 'octroitcredit':
             $credit = new Credits();
             $credit->__constructor(null, $_POST['numcarnet'], $_POST['parts'], $_POST['monatantremb'], 0, "USD", $_POST['typecredit'], $date, $date, 1);
-            $credit = $credit->save();
 
-            echo($credit->print());
+            $acc = new Accounts();
+            $acc = $acc->getOne(array(
+                "id"=> (int) $_POST['numcarnet']
+            ), null, null, null);
+            $b = (array) $acc->body;
+
+            if(count($b) && 1){
+                $credit = $credit->save();
+                echo($credit->print());
+            }else{
+                $res = new Response(404, "le  numero du membre est erroné !");
+                echo($res->print());
+            }
+
             break;
         case 'contribution':
             // $parts = new Parts();

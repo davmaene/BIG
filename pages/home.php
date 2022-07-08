@@ -155,9 +155,9 @@
         </div>
         <div class="col-lg-2">
             <div class="card">
-                <button class="btn btn-secondary">
+                <a href="?page=credit" class="btn btn-secondary">
                     <span>Remboursement</span>
-                </button>
+                </a>
             </div>
         </div>
     </div>
