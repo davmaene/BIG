@@ -3,7 +3,7 @@
       <span class="mask bg-gradient-dark opacity-6"></span> -->
       <div class="container my-auto">
         <div class="row">
-          <div class="col-lg-6 col-md-8 col-12 mx-auto">
+          <div class="col-lg-8 col-md-8 col-12 mx-auto">
             <div class="card z-index-0 fadeIn3 fadeInBottom">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
@@ -13,9 +13,26 @@
               <div class="card-body">
                 <form role="form" class="text-start" id="form-part">
                     <div class="col-lg-12" id="member-1">
-                        <div class="col-lg-12">
-                            <span>Montant</span>
-                            <h4 class="totaldposit">---</h4>
+                        <div class="w-100" id="output">
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <span>Montant</span>
+                                <h4 class="totaldposit">---</h4>
+                            </div>
+                            <div class="col-lg-3">
+                                <span>Type de crédit</span>
+                                <h4 class="typecredit">---</h4>
+                            </div>
+                            <div class="col-lg-3">
+                                <span>Interêt</span>
+                                <h4 class="interet">---</h4>
+                            </div>
+                            <div class="col-lg-3">
+                                <span>Total à rem.</span>
+                                <h4 class="totaldremb">---</h4>
+                            </div>
                         </div>
                         <div class="divider"></div>
                         <div class="input-group input-group-outline my-3">
@@ -56,6 +73,17 @@
         let pts = [];
         let canask = false;
 
+        const writeOutput = ({ title, message, type }) => {
+            $("#output").html(
+                `
+                    <div class="alert alert-${type}">
+                        <h4 class="text-white">${title}</h4>
+                        <p class="text-white">${message}</p>
+                    </div>
+                `
+            )
+        }
+
         $(document).ready(() => {
             $.ajax({
                 method: "GET",
@@ -75,15 +103,24 @@
                             // alert("Opération effectuée avec succès !");
                             break;
                         default:
-                            alert("Une erreur vient de se produire ! Veuillez réessayer plus tard!")
-                            toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
+                            writeOutput({
+                                title: "Octroit crédit", 
+                                message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
+                                type: "danger"
+                            })
+                            
                             break;
                     }
                 } catch (error) {
                     $("#loader-sp").remove()
-                    console.log(error);
-                    alert("Une erreur vient de se produire ! Veuillez réessayer plus tard!")
-                    toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
+                    // console.log(error);
+                    // alert("Une erreur vient de se produire ! Veuillez réessayer plus tard!")
+                    // toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
+                    writeOutput({
+                        title: "Octroit crédit", 
+                        message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
+                        type: "danger"
+                    })
                 }
             })
             .fail(err => {
@@ -111,30 +148,90 @@
         });
 
         $('[name="parts"]').on("keyup", (e) => {
+            $("#output").html("")
            if(pts.length > 0){
             // $(".totaldposit").text(`${1 * (!isNaN(parseInt(e.currentTarget.value)) ? parseInt(e.currentTarget.value) : 0)}$ ( Dollars )`);
-            const typecredit = $('[name="typecredit"]').val();
+            let typecredit = $('[name="typecredit"]').val();
             if(typecredit !== "" && typecredit !== " "){
+                typecredit = parseInt(typecredit);
                 switch (typecredit) {
                     case 1:
-                        
-                        break;
+                        let config = {
+                            echeance: 4,
+                            id: 1,
+                            interet: 0.02,
+                            libeleecheance: "mois",
+                            max: 3000,
+                            min: 0,
+                            penalite: 0.02,
+                            type: "Ordinaire"
+                        }
 
+                        if(parseFloat(e.currentTarget.value) > ( 1 + config['min']) && parseFloat(e.currentTarget.value) < (config['max'])){
+                            const total = (parseFloat(e.currentTarget.value) + (config['interet'] * e.currentTarget.value));
+                            $(".totaldposit").text(`${1 * (!isNaN(parseInt(e.currentTarget.value)) ? parseInt(e.currentTarget.value) : 0)}$ ( Dollars )`);
+                            $(".typecredit").text(config['type']);
+                            $(".interet").text(`${config['interet'] * 100}%`);
+                            $(".totaldremb").text(`${total}$`);
+
+                        }else{
+                            writeOutput({
+                                title: "Octroit crédit", 
+                                message: `Le montant démandé doit etre dans l'interval de ${config['min'] + 1} et  ${config['max']} $`,
+                                type: "danger"
+                            })
+                        }
+
+                        break;
                     case 2:
-                        
+                        let config = {
+                            echeance: 1,
+                            id: 2,
+                            interet: 0.04,
+                            libeleecheance: "mois",
+                            max: 3000,
+                            min: 0,
+                            penalite: 0.02,
+                            type: "Express"
+                        }
+
+                        if(parseFloat(e.currentTarget.value) > ( 1 + config['min']) && parseFloat(e.currentTarget.value) < (config['max'])){
+                            const total = (parseFloat(e.currentTarget.value) + (config['interet'] * e.currentTarget.value));
+                            $(".totaldposit").text(`${1 * (!isNaN(parseInt(e.currentTarget.value)) ? parseInt(e.currentTarget.value) : 0)}$ ( Dollars )`);
+                            $(".typecredit").text(config['type']);
+                            $(".interet").text(`${config['interet'] * 100}%`);
+                            $(".totaldremb").text(`${total}$`);
+
+                        }else{
+                            writeOutput({
+                                title: "Octroit crédit", 
+                                message: `Le montant démandé doit etre dans l'interval de ${config['min'] + 1} et  ${config['max']} $`,
+                                type: "danger"
+                            })
+                        }
+
                         break;
                     default:
-                        alert("Séléctioner le type de crédit avant de continuer !")
-                        toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
+                        writeOutput({
+                            title: "Octroit crédit", 
+                            message: `Séléctioner le type de crédit avant de continuer !`,
+                            type: "danger"
+                        })
                         break;
                 }
             }else{
-                alert("Séléctioner le type de crédit avant de continuer !")
-                toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
+                writeOutput({
+                    title: "Octroit crédit", 
+                    message: `Séléctioner le type de crédit avant de continuer !`,
+                    type: "danger"
+                })
             }
            }else{
-                alert("Une erreur vient de se produire ! Veuillez réessayer plus tard!")
-                toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
+                writeOutput({
+                    title: "Octroit crédit", 
+                    message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
+                    type: "danger"
+                })
            }
         })
 
