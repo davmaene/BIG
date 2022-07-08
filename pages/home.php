@@ -13,7 +13,9 @@
   $csocials = getSoldeContribution("socials");
 
   $credits = getSoldeCredit("montantdu");
-//   var_dump($parts);
+  $creditsolde = $credits['solde'];
+  $creditTable = $credits['table'];
+  
 ?>
 <div class="container-fluid py-4">
     <div class="row">
@@ -44,12 +46,12 @@
                 </div>
                 <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Crédit</p>
-                    <h6 class="mb-0"><?= $credits ?>$</h6>
+                    <h6 class="mb-0"><?= $creditsolde ?>$</h6>
                 </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-                <p class="mb-0"><span class="text-success text-sm font-weight-bolder">0 </span><small>Totla crédits en cours</small> </p>
+                <p class="mb-0"><span class="text-success text-sm font-weight-bolder"><?= count($creditTable); ?> </span><small>Totale crédits en cours</small> </p>
             </div>
             </div>
         </div>

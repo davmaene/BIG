@@ -72,7 +72,10 @@
               $montantpayer = $montantpayer + $value->montantpaye;
             }
 
-            return $montantdu - $montantpayer;
+            return array(
+                "solde" => $montantdu - $montantpayer,
+                "table" => $Credit->body
+            );
         }
 
     }else header("location: ./login/");
