@@ -150,7 +150,6 @@
         $('[name="parts"]').on("keyup", (e) => {
             $("#output").html("")
            if(pts.length > 0){
-            // $(".totaldposit").text(`${1 * (!isNaN(parseInt(e.currentTarget.value)) ? parseInt(e.currentTarget.value) : 0)}$ ( Dollars )`);
             let typecredit = $('[name="typecredit"]').val();
             if(typecredit !== "" && typecredit !== " "){
                 typecredit = parseInt(typecredit);
