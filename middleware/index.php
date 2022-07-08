@@ -49,7 +49,7 @@ if($_GET['curl']){
             break;
         case 'octroitcredit':
             $credit = new Credits();
-            $credit->__constructor(null, $_POST['numcarnet'], $_POST['parts'], 0, "USD", $_POST['typecredit'], $date, $date, 1);
+            $credit->__constructor(null, $_POST['numcarnet'], $_POST['parts'], $_POST['monatantremb'], 0, "USD", $_POST['typecredit'], $date, $date, 1);
             $credit = $credit->save();
 
             echo($credit->print());

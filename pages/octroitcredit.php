@@ -32,11 +32,19 @@
                                 <h4 class="totaldremb">---</h4>
                             </div>
                         </div>
+
                         <div class="divider"></div>
+
                         <div class="input-group input-group-outline my-3">
                             <label class="form-label">Numéro de carnet ou numéro de membre</label>
                             <input type="number" name="numcarnet" class="form-control" required>
                         </div>
+
+                        <div class="input-group input-group-outline my-3" hidden>
+                            <label class="form-label">Total montant à rembourser</label>
+                            <input type="text" name="monatantremb" class="form-control">
+                        </div>
+
                         <div class="input-group input-group-outline my-3">
                             <select name="typecredit" id="" class="form-control">
                                 <option value="">Séléctionner le type de crédit</option>
@@ -106,6 +114,8 @@
                             $(".typecredit").text(configs['type']);
                             $(".interet").text(`${configs['interet'] * 100}%`);
                             $(".totaldremb").text(`${total}$`);
+
+                            $("[name='monatantremb']").val(total)
 
                         }else{
                             writeOutput({

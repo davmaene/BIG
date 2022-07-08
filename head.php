@@ -61,11 +61,22 @@
             $montantpayer = 0;
             $Credit = new Credits();
 
+            // array(
+            //     "status" => 1
+            // ),
+
             $Credit = $Credit->getAll(
-                array(
-                    "status" => 1
-                )
+                null,
+                [
+                    array(
+                        "table" => new Membres(),
+                        "on" => ["idaccount", "idaccount"],
+                        "columns" => ["nom", "postnom", "phone"]
+                    )
+                ]
             );
+
+            // var_dump($Credit);
 
             foreach ((array) $Credit->body as $value) {
               $montantdu = $montantdu + $value->montantdu;

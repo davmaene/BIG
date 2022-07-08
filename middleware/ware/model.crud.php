@@ -221,9 +221,11 @@
                     $query .= " $cl ";
                 }
             }
+
             $nblines = 0;
+
             if(count($tabProperties) > 0){
-                $query .= $thereisjointure ? " AND " : " WHERE ";
+                $query .= strpos($query, "AND") > 0 ? " AND " : " WHERE ";
                 foreach ($clauses as $key => $value) {
                     ++$nblines;
                     $value_ = is_numeric($value) ? $value : "'".$value."'";
@@ -260,6 +262,8 @@
                                 $clname = ($toj->__createClass());
                                 $props = json_encode($toj); 
                                 $props = json_decode($props, true);
+
+                                // var_dump($toj);
 
                                 foreach ($props as $key => $value) {
                                     $toj->$key = $rem[$i][$key];

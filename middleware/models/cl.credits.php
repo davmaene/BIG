@@ -3,6 +3,7 @@ class Credits extends CRUD__{
 
     public $id;
     public $idaccount;
+    public $montant;
     public $montantdu;
     public $montantpaye;
     public $devise;
@@ -13,13 +14,14 @@ class Credits extends CRUD__{
 
     public function __construct() {}
         
-    public function __constructor($id, $idaccount, $montantdu, $montantpaye, $devise, $type, $createdon, $updatedon, $status){
+    public function __constructor($id, $idaccount, $montant, $montantdu, $montantpaye, $devise, $type, $createdon, $updatedon, $status){
         $this->id = $id;
         $this->idaccount = $idaccount;
         $this->montantdu = $montantdu;
         $this->montantpaye = $montantpaye;
         $this->devise = $devise;
         $this->type = $type;
+        $this->montant = $montant;
         $this->createdon = $createdon;
         $this->updatedon = $updatedon;
         $this->status = $status;
