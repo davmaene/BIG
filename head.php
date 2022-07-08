@@ -56,8 +56,9 @@
             return $nmbofparts;
         }
 
-        function getSoldeCredit($categ){
-            $nmbofparts = 0;
+        function getSoldeCredit($categ = null){
+            $montantdu = 0;
+            $montantpayer = 0;
             $Credit = new Credits();
 
             $Credit = $Credit->getAll(
@@ -67,10 +68,11 @@
             );
 
             foreach ((array) $Credit->body as $value) {
-              $nmbofparts = $nmbofparts + $value->$categ;
+              $montantdu = $montantdu + $value->montantdu;
+              $montantpayer = $montantpayer + $value->montantpaye;
             }
 
-            return $nmbofparts;
+            return $montantdu - $montantpayer;
         }
 
     }else header("location: ./login/");
