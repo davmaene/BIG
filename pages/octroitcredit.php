@@ -156,7 +156,7 @@
                 typecredit = parseInt(typecredit);
                 switch (typecredit) {
                     case 1:
-                        let config = {
+                        const configs = {
                             echeance: 4,
                             id: 1,
                             interet: 0.02,
@@ -167,35 +167,35 @@
                             type: "Ordinaire"
                         }
 
-                        if(parseFloat(e.currentTarget.value) > ( 1 + config['min']) && parseFloat(e.currentTarget.value) < (config['max'])){
-                            const total = (parseFloat(e.currentTarget.value) + (config['interet'] * e.currentTarget.value));
+                        if(parseFloat(e.currentTarget.value) > ( 1 + configs['min']) && parseFloat(e.currentTarget.value) <= (configs['max'])){
+                            const total = (parseFloat(e.currentTarget.value) + (configs['interet'] * e.currentTarget.value));
                             $(".totaldposit").text(`${1 * (!isNaN(parseInt(e.currentTarget.value)) ? parseInt(e.currentTarget.value) : 0)}$ ( Dollars )`);
-                            $(".typecredit").text(config['type']);
-                            $(".interet").text(`${config['interet'] * 100}%`);
+                            $(".typecredit").text(configs['type']);
+                            $(".interet").text(`${configs['interet'] * 100}%`);
                             $(".totaldremb").text(`${total}$`);
 
                         }else{
                             writeOutput({
                                 title: "Octroit crédit", 
-                                message: `Le montant démandé doit etre dans l'interval de ${config['min'] + 1} et  ${config['max']} $`,
+                                message: `Le montant démandé doit etre dans l'interval de ${configs['min'] + 1} et  ${configs['max']} $`,
                                 type: "danger"
                             })
                         }
 
                         break;
                     case 2:
-                        let config = {
+                        const config = {
                             echeance: 1,
                             id: 2,
                             interet: 0.04,
                             libeleecheance: "mois",
-                            max: 3000,
+                            max: 2000,
                             min: 0,
                             penalite: 0.02,
                             type: "Express"
                         }
 
-                        if(parseFloat(e.currentTarget.value) > ( 1 + config['min']) && parseFloat(e.currentTarget.value) < (config['max'])){
+                        if(parseFloat(e.currentTarget.value) > ( 1 + config['min']) && parseFloat(e.currentTarget.value) <= (config['max'])){
                             const total = (parseFloat(e.currentTarget.value) + (config['interet'] * e.currentTarget.value));
                             $(".totaldposit").text(`${1 * (!isNaN(parseInt(e.currentTarget.value)) ? parseInt(e.currentTarget.value) : 0)}$ ( Dollars )`);
                             $(".typecredit").text(config['type']);
