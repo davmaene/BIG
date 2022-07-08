@@ -84,72 +84,8 @@
             )
         }
 
-        $(document).ready(() => {
-            $.ajax({
-                method: "GET",
-                url: `./middleware/index.php?curl=typecredit`,
-                data: null
-            })
-            .done(res => {
-                $("#loader-sp").remove()
-                try {
-                    const s = JSON.parse(res);
-                    switch (s['status']) {
-                        case 200:
-                            pts = s['body'];
-                            // $(e.currentTarget).trigger("reset");
-                            console.log(s);
-                            // toastr.success('Opération effectuée avec succès !');
-                            // alert("Opération effectuée avec succès !");
-                            break;
-                        default:
-                            writeOutput({
-                                title: "Octroit crédit", 
-                                message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
-                                type: "danger"
-                            })
-                            
-                            break;
-                    }
-                } catch (error) {
-                    $("#loader-sp").remove()
-                    // console.log(error);
-                    // alert("Une erreur vient de se produire ! Veuillez réessayer plus tard!")
-                    // toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
-                    writeOutput({
-                        title: "Octroit crédit", 
-                        message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
-                        type: "danger"
-                    })
-                }
-            })
-            .fail(err => {
-                $("#loader-sp").remove()
-                toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
-                console.log("Error => ",err);
-            })
-        })
-        $("[type='checkbox']").on("change", (e) => {
-            if($(e.currentTarget).attr("is-checked") === "true"){ 
-                $(e.currentTarget).attr({"is-checked":"false"}) 
-                $("#member-2").addClass("d-none");
-                $("#member-1").addClass("col-lg-12");
-                $(".on-ischecked").addClass("d-none"); 
-            } else {
-                $(".on-ischecked").removeClass("d-none"); 
-                $(e.currentTarget).attr({"is-checked":"true"});
-                $("#member-2").removeClass("d-none");
-                $("#member-1").removeClass("col-lg-12").addClass("col-lg-6");
-            }
-        });
-
-        $("[name='valeupart']").on("focus", (e) => {
-            $(e.currentTarget).val(valuepart);
-        });
-
-        $('[name="parts"]').on("keyup", (e) => {
-            $("#output").html("")
-           if(pts.length > 0){
+        const _forceUpdate = (e) => {
+            // if(pts.length > 0){
             let typecredit = $('[name="typecredit"]').val();
             if(typecredit !== "" && typecredit !== " "){
                 typecredit = parseInt(typecredit);
@@ -166,9 +102,9 @@
                             type: "Ordinaire"
                         }
 
-                        if(parseFloat(e.currentTarget.value) > ( 1 + configs['min']) && parseFloat(e.currentTarget.value) <= (configs['max'])){
-                            const total = (parseFloat(e.currentTarget.value) + (configs['interet'] * e.currentTarget.value));
-                            $(".totaldposit").text(`${1 * (!isNaN(parseInt(e.currentTarget.value)) ? parseInt(e.currentTarget.value) : 0)}$ ( Dollars )`);
+                        if(parseFloat(e) > ( 1 + configs['min']) && parseFloat(e) <= (configs['max'])){
+                            const total = (parseFloat(e) + (configs['interet'] * e));
+                            $(".totaldposit").text(`${1 * (!isNaN(parseInt(e)) ? parseInt(e) : 0)}$ ( Dollars )`);
                             $(".typecredit").text(configs['type']);
                             $(".interet").text(`${configs['interet'] * 100}%`);
                             $(".totaldremb").text(`${total}$`);
@@ -194,9 +130,9 @@
                             type: "Express"
                         }
 
-                        if(parseFloat(e.currentTarget.value) > ( 1 + config['min']) && parseFloat(e.currentTarget.value) <= (config['max'])){
-                            const total = (parseFloat(e.currentTarget.value) + (config['interet'] * e.currentTarget.value));
-                            $(".totaldposit").text(`${1 * (!isNaN(parseInt(e.currentTarget.value)) ? parseInt(e.currentTarget.value) : 0)}$ ( Dollars )`);
+                        if(parseFloat(e) > ( 1 + config['min']) && parseFloat(e) <= (config['max'])){
+                            const total = (parseFloat(e) + (config['interet'] * e));
+                            $(".totaldposit").text(`${1 * (!isNaN(parseInt(e)) ? parseInt(e) : 0)}$ ( Dollars )`);
                             $(".typecredit").text(config['type']);
                             $(".interet").text(`${config['interet'] * 100}%`);
                             $(".totaldremb").text(`${total}$`);
@@ -225,13 +161,82 @@
                     type: "danger"
                 })
             }
-           }else{
-                writeOutput({
-                    title: "Octroit crédit", 
-                    message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
-                    type: "danger"
-                })
-           }
+            // }else{
+            //         writeOutput({
+            //             title: "Octroit crédit", 
+            //             message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
+            //             type: "danger"
+            //         })
+            // }
+        }
+
+        // $(document).ready(() => {
+        //     $.ajax({
+        //         method: "GET",
+        //         url: `./middleware/index.php?curl=typecredit`,
+        //         data: null
+        //     })
+        //     .done(res => {
+        //         $("#loader-sp").remove()
+        //         try {
+        //             const s = JSON.parse(res);
+        //             switch (s['status']) {
+        //                 case 200:
+        //                     pts = s['body'];
+        //                     // console.log(s);
+        //                 default:
+        //                     alert(1)
+        //                     writeOutput({
+        //                         title: "Octroit crédit", 
+        //                         message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
+        //                         type: "danger"
+        //                     })
+                            
+        //                     break;
+        //             }
+        //         } catch (error) {
+        //             $("#loader-sp").remove()
+        //             alert(1)
+        //             writeOutput({
+        //                 title: "Octroit crédit", 
+        //                 message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
+        //                 type: "danger"
+        //             })
+        //         }
+        //     })
+        //     .fail(err => {
+        //         $("#loader-sp").remove()
+        //         toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
+        //         console.log("Error => ",err);
+        //     })
+        // });
+
+        $("[type='checkbox']").on("change", (e) => {
+            if($(e.currentTarget).attr("is-checked") === "true"){ 
+                $(e.currentTarget).attr({"is-checked":"false"}) 
+                $("#member-2").addClass("d-none");
+                $("#member-1").addClass("col-lg-12");
+                $(".on-ischecked").addClass("d-none"); 
+            } else {
+                $(".on-ischecked").removeClass("d-none"); 
+                $(e.currentTarget).attr({"is-checked":"true"});
+                $("#member-2").removeClass("d-none");
+                $("#member-1").removeClass("col-lg-12").addClass("col-lg-6");
+            }
+        });
+
+        $("[name='valeupart']").on("focus", (e) => {
+            $(e.currentTarget).val(valuepart);
+        });
+
+        $('[name="typecredit"]').on("change", (e) => {
+            $("#output").html("")
+            _forceUpdate($('[name="parts"]').val())
+        })
+
+        $('[name="parts"]').on("keyup", (e) => {
+            $("#output").html("")
+            _forceUpdate(e.currentTarget.value)
         })
 
         $("#form-part").on("submit", (e) => {
@@ -244,7 +249,7 @@
             $("#btn-loader").append(ldr)
             $.ajax({
                 method: "POST",
-                url: `./middleware/index.php?curl=addpart`,
+                url: `./middleware/index.php?curl=octroitcredit`,
                 data: $(e.target).serialize()
             })
             .done(res => {
@@ -256,6 +261,12 @@
                             $(e.currentTarget).trigger("reset");
                             toastr.success('Opération effectuée avec succès !');
                             alert("Opération effectuée avec succès !");
+                            writeOutput({
+                                title: "Octroit crédit", 
+                                message: `Opération effectuée avec succès !`,
+                                type: "success"
+                            })
+                            $(e).trigger("reset")
                             break;
                         case 404:
                             toastr.success('Le numéro du membre on du carnet est incorrecte !');

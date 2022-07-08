@@ -12,6 +12,7 @@ include_once("models/cl.member.php");
 include_once("models/cl.accounts.php");
 include_once("models/cl.parts.php");
 include_once("models/cl.typecredit.php");
+include_once("models/cl.credits.php");
 
 function _listRubriques($where = null){
     $rbqs = new Rubriques();
@@ -33,6 +34,7 @@ function _fillPhoneNumber($string){
 
 $valuepart = 1320;
 $valuepartsocial = 4;
+$date = date("d/m/Y, H:i:s");
 
 if($_GET['curl']){
     $curl = $_GET['curl'];
@@ -46,6 +48,11 @@ if($_GET['curl']){
         case 'paiementcredit':
             break;
         case 'octroitcredit':
+            $credit = new Credits();
+            $credit->__constructor(null, $_POST['numcarnet'], $_POST['parts'], 0, "USD", $_POST['typecredit'], $date, $date, 1);
+            $credit = $credit->save();
+
+            echo($credit->print());
             break;
         case 'contribution':
             // $parts = new Parts();
