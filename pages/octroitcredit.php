@@ -13,9 +13,7 @@
               <div class="card-body">
                 <form role="form" class="text-start" id="form-part">
                     <div class="col-lg-12" id="member-1">
-                        <div class="w-100" id="output">
-
-                        </div>
+                        <div class="w-100" id="output"></div>
                         <div class="row">
                             <div class="col-lg-3">
                                 <span>Montant</span>
