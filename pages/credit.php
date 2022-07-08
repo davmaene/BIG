@@ -40,7 +40,7 @@
                             <input type="number" name="numcarnet" class="form-control" required>
                         </div>
 
-                        <div class="input-group input-group-outline my-3" hidden>
+                        <!-- <div class="input-group input-group-outline my-3" hidden>
                             <label class="form-label">Total montant à rembourser</label>
                             <input type="text" name="monatantremb" class="form-control">
                         </div>
@@ -51,15 +51,15 @@
                                 <option value="1">Crédit Ordinaire</option>
                                 <option value="2">Crédits Express</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="input-group input-group-outline my-3">
-                            <label class="form-label">Nombre de parts</label>
-                            <input type="number" name="parts" class="form-control" required minlength="1">
+                            <label class="form-label">Montant</label>
+                            <input type="number" name="montant" class="form-control" required minlength="1" required>
                         </div>
                         <div class="col-lg-12">
                             <div class="text-center">
                                 <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" id="btn-loader">
-                                    <span>Ajouter</span>
+                                    <span>Confirmer</span>
                                 </button>
                             </div>
                         </div>
@@ -257,7 +257,7 @@
             $("#btn-loader").append(ldr)
             $.ajax({
                 method: "POST",
-                url: `./middleware/index.php?curl=octroitcredit`,
+                url: `./middleware/index.php?curl=rembourssement`,
                 data: $(e.target).serialize()
             })
             .done(res => {

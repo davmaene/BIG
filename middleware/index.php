@@ -39,6 +39,34 @@ $date = date("d/m/Y, H:i:s");
 if($_GET['curl']){
     $curl = $_GET['curl'];
     switch ($curl) {
+        case 'rembourssement':
+            $credit = new Credits();
+
+            $credi = $credit->getOne(
+                array(
+                    "idaccount" => (int) $_POST['numcarnet']
+            ), null, null, null);
+
+            $b = $credi->body;
+            if(count($b) && 1){
+                $credit = $credit->edit(
+                    array(
+                        "idacccount" => $_POST['numcarnet']
+                    ),
+                    array(
+                        "montantdu" => $b->montantdu - $_POST['montant'],
+                        "updatedon" => $date,
+                        "montantpaye" => $b->montantpaye + $_POST['montant']
+                    )
+                );
+
+                echo($credi->print());
+
+            }else{
+                $res = new Response(404, "le  numero du membre est erroné !");
+                echo($res->print());
+            }
+            break;
         case 'typecredit':
             $typecredit = new Typecredits();
             $typecredit = $typecredit->getAll();

@@ -53,13 +53,13 @@
                             </select>
                         </div>
                         <div class="input-group input-group-outline my-3">
-                            <label class="form-label">Nombre de parts</label>
+                            <label class="form-label">Montant</label>
                             <input type="number" name="parts" class="form-control" required minlength="1">
                         </div>
                         <div class="col-lg-12">
                             <div class="text-center">
                                 <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" id="btn-loader">
-                                    <span>Ajouter</span>
+                                    <span>Confirmer</span>
                                 </button>
                             </div>
                         </div>
