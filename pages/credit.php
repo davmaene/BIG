@@ -182,47 +182,6 @@
             // }
         }
 
-        // $(document).ready(() => {
-        //     $.ajax({
-        //         method: "GET",
-        //         url: `./middleware/index.php?curl=typecredit`,
-        //         data: null
-        //     })
-        //     .done(res => {
-        //         $("#loader-sp").remove()
-        //         try {
-        //             const s = JSON.parse(res);
-        //             switch (s['status']) {
-        //                 case 200:
-        //                     pts = s['body'];
-        //                     // console.log(s);
-        //                 default:
-        //                     alert(1)
-        //                     writeOutput({
-        //                         title: "Remboursement crédit", 
-        //                         message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
-        //                         type: "danger"
-        //                     })
-                            
-        //                     break;
-        //             }
-        //         } catch (error) {
-        //             $("#loader-sp").remove()
-        //             alert(1)
-        //             writeOutput({
-        //                 title: "Remboursement crédit", 
-        //                 message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
-        //                 type: "danger"
-        //             })
-        //         }
-        //     })
-        //     .fail(err => {
-        //         $("#loader-sp").remove()
-        //         toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
-        //         console.log("Error => ",err);
-        //     })
-        // });
-
         $("[type='checkbox']").on("change", (e) => {
             if($(e.currentTarget).attr("is-checked") === "true"){ 
                 $(e.currentTarget).attr({"is-checked":"false"}) 
