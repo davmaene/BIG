@@ -80,7 +80,7 @@ class Config implements Init {
 
     public function onFetchingOne($query, $tablename){
         try {
-            echo($query);
+            // echo($query);
             // $this->addFiveExtraColumns(); // ceci est important quand il faut que j'ajoute les extras column avant d'ajouter les datas
             $req = $this->db->prepare($query);
             $req->execute();
