@@ -55,9 +55,8 @@
                 $sql = $options['sql'];
                 $tbl = $options['table'];
                 $res = $conf->onFetchingOne($sql, $tbl);
-                if($res !== 500){
-
-                }else return new Response(500, $res);
+                if($res !== 500) return new Response(200, "Operation done ! ");
+                else return new Response(500, $res);
             }else return new Response(401, "Options parameter must be an array !");
         }
         public function save(){ // create instance and add record to db

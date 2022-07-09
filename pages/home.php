@@ -170,7 +170,7 @@
                     <h6>Crédits en cours</h6>
                     <p class="text-sm mb-0">
                     <i class="fa fa-check text-info" aria-hidden="true"></i>
-                    <span class="font-weight-bold ms-1"><?= count($creditTable) ?> crédits au total</span> qui sont en cours
+                    <span class="font-weight-bold ms-1"><?= count($creditTable) ?> crédits au total</span> en cours
                     </p>
                 </div>
                 <div class="col-lg-6 col-5 my-auto text-end">
@@ -251,7 +251,7 @@
                     <h6>Penalités en cours</h6>
                     <p class="text-sm mb-0">
                     <i class="fa fa-check text-info" aria-hidden="true"></i>
-                    <span class="font-weight-bold ms-1">0 penalités au total</span> qui sont en cours
+                    <span class="font-weight-bold ms-1">0 penalités au total</span> en cours
                     </p>
                 </div>
                 <div class="col-lg-6 col-5 my-auto text-end">
