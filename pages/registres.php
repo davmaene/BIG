@@ -10,6 +10,7 @@
     // $creditsolde = $credits['solde'];
     // $creditTable = $credits['table'];
 ?>
+
 <div class="container-fluid py-4">
   <div class="row">
     <div class="col-12">
@@ -20,55 +21,20 @@
           </div>
         </div>
         <div class="card-body px-0 pb-2">
+          <div class="col-lg-12" id="output"></div>
           <div class="table-responsive p-0">
             <table class="table align-items-center mb-0 table-striped table-bordered">
               <thead>
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Membre</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Numéro du carnet</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Montant du crédit</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Montant du</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Montant payé</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date limite</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Numéro de téléphone</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Membre depuis</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Etat du membre</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                 </tr>
               </thead>
-              <tbody>
-
-                  <!-- <tr>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm text-capitalize"><?= $membres[0]['nom']." - ".$membres[1]['postnom'] ?></h6>
-                          <p class="text-xs text-secondary mb-0">Numéro carnet : <?= $value->idaccount ?></p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="text-xs font-weight-bold mb-0">Numéro du carnet</p>
-                      <p class="text-xs text-secondary mb-0"><?= $value->idaccount ?></p>
-                    </td>
-                    <td>
-                      <p class="text-xs font-weight-bold mb-0">Montant</p>
-                      <p class="text-xs text-secondary mb-0"><?= $value->montant ?>$</p>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-xs font-weight-bold mb-0">Montant du</p>
-                      <p class="text-xs text-secondary mb-0"><?= $value->montantdu ?>$</p>
-                    </td>
-                    <td class="align-middle text-center">
-                      <p class="text-xs font-weight-bold mb-0">Montant payé</p>
-                      <p class="text-xs text-secondary mb-0"><?= $value->montantpaye ?>$</p>
-                    </td>
-                    <td class="align-middle text-center">
-                      <p class="text-xs font-weight-bold mb-0">Date</p>
-                      <p class="text-xs text-secondary mb-0"><?= $value->createdon ?></p>
-                    </td>
-                    <td class="align-middle text-center">
-                      <p class="text-xs font-weight-bold mb-0">Date limite</p>
-                      <p class="text-xs text-secondary mb-0"><?= date('Y-m-d', strtotime($value->createdon. " + $nmdays days")) ?></p>
-                    </td>
-                  </tr> -->
+              <tbody id="tbody">
 
               </tbody>
             </table>
@@ -78,3 +44,136 @@
     </div>
   </div>
 </div>
+<script>
+    let pts = [];
+
+    const writeOutput = ({ title, message, type }) => {
+        $("#output").html(
+            `
+                <div class="alert alert-${type}">
+                    <h4 class="text-white">${title}</h4>
+                    <p class="text-white">${message}</p>
+                </div>
+            `
+        )
+    }
+
+    $(document).ready(() => {
+        $.ajax({
+            method: "GET",
+            url: `./middleware/index.php?curl=loadmembres`,
+            data: null
+        })
+        .done(res => {
+            $("#loader-sp").remove()
+            try {
+                const s = JSON.parse(res);
+                switch (s['status']) {
+                    case 200:
+                        pts = s['body'];
+                        pts.forEach(mmb => {
+                            $("#tbody").append(
+                                `
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm text-capitalize">${mmb['nom']}-${mmb['postnom']}</h6>
+                                                    <p class="text-xs text-secondary mb-0">Numéro carnet : ${mmb['idaccount']}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">Numéro du carnet</p>
+                                            <p class="text-xs text-secondary mb-0">${mmb['idaccount']}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">Numéro de téléphone</p>
+                                            <p class="text-xs text-secondary mb-0">${mmb['phone']}</p>
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <p class="text-xs font-weight-bold mb-0">Membre depuis</p>
+                                            <p class="text-xs text-secondary mb-0">${mmb['createdon']}</p>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <p class="text-xs font-weight-bold mb-0">Etat du membre</p>
+                                            <p class="text-xs text-secondary mb-0">${parseInt(mmb['pendingpassif']) === 1 ? "Passif" : "Actif"}</p>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <div class="btn-group btn-group-sm">
+                                                <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter-${mmb['id']}">
+                                                    <span class="fa fa-close"></span>
+                                                    Absent
+                                                </button>
+                                                <button class="btn btn-success">
+                                                    <span class="fa fa-check"></span>
+                                                    Présent
+                                                </button>
+                                            </div>
+                                            <div class="modal fade" id="exampleModalCenter-${mmb['id']}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <form action="#" id="ondeleteoperation${mmb['id']}" tag="ondeleteoperation">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalCenterTitle">Suppression d'une opération</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Vous ête sur le point de supprimer une opération; cette requête est ireversible</p>
+                                                                <p>Operation ID : <strong>${mmb['comptorident']}></strong></p>
+                                                                <p>Montant : <strong>${mmb['amount']}>$</strong></p>
+                                                                <p>Num clinet : <strong>${mmb['phonenumber']}></strong></p>
+                                                                    <input type="text" name="motif" value="">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <div class="btn btn-group w-100">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                                        <span class="fa fa-close pr-1"></span>
+                                                                        Annuler
+                                                                    </button>
+                                                                    <button type="submit" class="btn btn-primary" btn-del="exampleModalCenter-${mmb['id']}">
+                                                                        <span class="fa fa-trash pr-1"></span>
+                                                                        <span>Supprimer quand même</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                `
+                            )
+                        });
+                        // console.log(pts);
+                        break;
+                    default:
+                        // alert(1)
+                        writeOutput({
+                            title: "Chargement de membres", 
+                            message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
+                            type: "danger"
+                        })
+                        
+                        break;
+                }
+            } catch (error) {
+                $("#loader-sp").remove()
+                // alert(1)
+                writeOutput({
+                    title: "Chargement de membres", 
+                    message: `Une erreur vient de se produire ! Veuillez réessayer plus tard!`,
+                    type: "danger"
+                })
+            }
+        })
+        .fail(err => {
+            $("#loader-sp").remove()
+            toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
+            console.log("Error => ",err);
+        })
+    });
+</script>

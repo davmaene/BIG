@@ -66,6 +66,12 @@ if($_GET['curl']){
                 echo($res->print());
             }
             break;
+        case 'loadmembres':
+            $members = new Membres();
+            $members = $members->getAll();
+
+            echo($members->print());
+            break;
         case 'typecredit':
             $typecredit = new Typecredits();
             $typecredit = $typecredit->getAll();
