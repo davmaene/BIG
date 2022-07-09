@@ -24,5 +24,4 @@ define("env", // environement
         "password" => $customer_password ?? ""
     )
 );
-// 
 ?>
