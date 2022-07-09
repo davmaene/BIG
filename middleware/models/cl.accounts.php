@@ -11,7 +11,17 @@
         public $ispendingpassif;
         public $createdon;
 
-        public function __constructor($id, $iscouple, $parts, $socials, $valuerpart, $valuerpartsocial, $status, $ispendingpassif, $createdon){
+        public function __constructor(
+                $id, 
+                $iscouple, 
+                $parts, 
+                $socials, 
+                $valuerpart, 
+                $valuerpartsocial, 
+                $status, 
+                $ispendingpassif, 
+                $createdon
+            ){
             $this->id = $id;
             $this->iscouple = $iscouple;
             $this->parts = $parts;

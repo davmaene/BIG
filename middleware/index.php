@@ -33,7 +33,7 @@ function _fillPhoneNumber($string){
 }
 
 $valuepart = 1320;
-$valuepartsocial = 4;
+$valuepartsocial = 5;
 $date = date("d/m/Y, H:i:s");
 
 if($_GET['curl']){
@@ -177,12 +177,14 @@ if($_GET['curl']){
             }
             break;
         case 'addmember':
+            // var_dump($_POST);
+            // return false;
             if(isset($_POST['checked'])){
                 $member1 = new Membres();
                 $member2 = new Membres();
 
                 $acoount = new Accounts();
-                $acoount->__constructor(null, 1, 0, 0, $valuepart, $valuepartsocial,  1, 0, date("d/m/Y, H:i:s"));
+                $acoount->__constructor(null, 1, 0, $valuepart, 0,  $valuepartsocial,  1, 0, date("d/m/Y, H:i:s"));
 
                 $account = $acoount->save();
                 $b = $account->body;
@@ -223,7 +225,7 @@ if($_GET['curl']){
             }else{
                 $member = new Membres();
                 $acoount = new Accounts();
-                $acoount->__constructor(null, 1, 0, 0, $valuepart, $valuepartsocial,  1, 0, date("d/m/Y, H:i:s"));
+                $acoount->__constructor(null, 0, 0, $valuepart, 0,  $valuepartsocial,  1, 0, date("d/m/Y, H:i:s"));
 
                 $account = $acoount->save();
                 $b = $account->body;

@@ -20,7 +20,7 @@
         </div>
         <div class="card-body px-0 pb-2">
           <div class="table-responsive p-0">
-            <table class="table align-items-center mb-0">
+            <table class="table align-items-center mb-0 table-bordered table-striped">
               <thead>
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Membre</th>
@@ -28,6 +28,8 @@
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nombre de parts</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Parts socials</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Valeurs parts</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Valeurs parts social</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Total solde parts</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Statut</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Membre depuis</th>
                   <!-- <th class="text-secondary opacity-7"></th> -->
@@ -73,7 +75,19 @@
                   <td>
                     <p class="text-xs font-weight-bold mb-0">Valeurs parts</p>
                     <p class="text-xs text-secondary mb-0">
-                      <h6><?= 1320 ?></h6>
+                      <h6><?= 1320 ?>$</h6>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0">Valeurs parts</p>
+                    <p class="text-xs text-secondary mb-0">
+                      <h6><?= 5 ?>$</h6>
+                    </p>
+                  </td>
+                  <td class="bg-info">
+                    <p class="text-xs font-weight-bold mb-0 text-white">Valeurs parts</p>
+                    <p class="text-xs text-secondary mb-0">
+                      <h6 class="text-white"><?= (int) $acc[0]['parts'] * (int) 1320 ?>$</h6>
                     </p>
                   </td>
                   <td class="align-middle text-center text-sm">
