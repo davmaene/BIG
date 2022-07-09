@@ -73,19 +73,19 @@
                     </p>
                   </td>
                   <td>
-                    <p class="text-xs font-weight-bold mb-0">Valeurs parts</p>
+                    <p class="text-xs font-weight-bold mb-0">Valeur parts</p>
                     <p class="text-xs text-secondary mb-0">
                       <h6><?= 1320 ?>$</h6>
                     </p>
                   </td>
                   <td>
-                    <p class="text-xs font-weight-bold mb-0">Valeurs parts</p>
+                    <p class="text-xs font-weight-bold mb-0">Valeur part social</p>
                     <p class="text-xs text-secondary mb-0">
                       <h6><?= 5 ?>$</h6>
                     </p>
                   </td>
                   <td class="bg-info">
-                    <p class="text-xs font-weight-bold mb-0 text-white">Valeurs parts</p>
+                    <p class="text-xs font-weight-bold mb-0 text-white">Solde total parts</p>
                     <p class="text-xs text-secondary mb-0">
                       <h6 class="text-white"><?= (int) $acc[0]['parts'] * (int) 1320 ?>$</h6>
                     </p>
