@@ -110,7 +110,7 @@
 
                 foreach ($sets as $k => $val){
                     ++$nblines;
-                    $value_ = is_numeric($val) ? $value : "'".$val."'";
+                    $value_ = is_numeric($val) ? $val : "'".$val."'";
                     $query .= ((int) $nblines === count($sets)) ? "`$k` = $value_" : "`$k` = $value_ , "; 
                 }
 

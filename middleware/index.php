@@ -49,20 +49,26 @@ if($_GET['curl']){
 
             $b = $credi->body;
             if(count((array) $b) && $credi->status === 200){
+                $montd = $b->montantdu - $_POST['montant'];
+                $montp = $b->montantpaye + $_POST['montant'];
+
+                echo($montd);
+                echo("<br/>");
+                echo($montp);
                 $creditS = new Credits();
                 $creditS = $creditS->edit(
                     array(
                         "idaccount" => (int) $_POST['numcarnet']
                     ),
                     array(
-                        "montantdu" =>  $b->montantdu - $_POST['montant'],
+                        "montantdu" =>  $montd,
                         "updatedon" => $date,
-                        "montantpaye" => $b->montantpaye + $_POST['montant']
+                        "montantpaye" => $montp
                     )
                 );
-                echo($creditS->print());
+                // echo($creditS->print());
             }else{
-                $res = new Response(404, "le  numero du membre est erroné !");
+                $res = new Response(404, "le numéro du membre est erroné !");
                 echo($res->print());
             }
             break;
@@ -177,6 +183,7 @@ if($_GET['curl']){
             }
             break;
         case 'addmember':
+
             if(isset($_POST['checked'])){
                 $member1 = new Membres();
                 $member2 = new Membres();
@@ -221,6 +228,9 @@ if($_GET['curl']){
                     echo($account->print());
                 }
             }else{
+
+                // var_dump($_POST);
+                // return false;
                 $member = new Membres();
                 $acoount = new Accounts();
                 $acoount->__constructor(null, 0, 0, $valuepart, 0,  $valuepartsocial,  1, 0, date("d/m/Y, H:i:s"));

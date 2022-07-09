@@ -73,7 +73,7 @@
                   <td>
                     <p class="text-xs font-weight-bold mb-0">Valeurs parts</p>
                     <p class="text-xs text-secondary mb-0">
-                      <h6><?= 1320 ?></h6>
+                      <h6><?= 1320 ?>$</h6>
                     </p>
                   </td>
                   <td class="align-middle text-center text-sm">

@@ -13,6 +13,7 @@ class Membres extends CRUD__{
         $this->id = $id;
         $this->nom = $nom;
         $this->postnom = $postnom;
+        $this->phone = $phone;
         $this->idaccount = $idaccount;
         $this->pendingpassif = $pendingpassif;
         $this->status = $status;
