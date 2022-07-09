@@ -177,8 +177,6 @@ if($_GET['curl']){
             }
             break;
         case 'addmember':
-            // var_dump($_POST);
-            // return false;
             if(isset($_POST['checked'])){
                 $member1 = new Membres();
                 $member2 = new Membres();
