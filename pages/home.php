@@ -127,9 +127,9 @@
         </div>
         <div class="col-lg-2">
             <div class="card">
-                <button class="btn btn-secondary">
+                <a href="?page=registres" class="btn btn-secondary">
                     <span>Demarrer une réunion</span>
-                </button>
+                </a>
             </div>
         </div>
         <div class="col-lg-2">

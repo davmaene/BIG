@@ -37,7 +37,8 @@
                 <?php 
                   foreach ($creditTable as $key => $value) {
                     $membres = isset($value->__tbl_membres) ? $value->__tbl_membres : [];
-                    $nmdays = _numDaysInMonth(date("m") + 1);
+                    $jumpto = (int) $value->type === 1 ? 4 : 1; 
+                    $nmdays = _numDaysInMonth( date("m") + $jumpto );
                 ?>
                   <tr>
                     <td>
