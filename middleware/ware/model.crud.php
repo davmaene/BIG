@@ -102,7 +102,6 @@
                 foreach ($properties as $key => $value) array_push($tabProperties, $key);
                 foreach ($clauses as $key => $value) if(!in_array($key, $tabProperties, true)) return new Response(401, ["there is no property :: $key :: in Instance :: $objectName :: bad params in clause"]);
 
-                // foreach ($properties as $key => $value) array_push($tabProperties, $key);
                 foreach ($sets as $key => $value) if(!in_array($key, $tabProperties, true)) return new Response(401, ["there is no property :: $key :: in Instance :: $objectName :: bad params in SETS"]);
 
                 $query = "UPDATE $nclassname SET ";
