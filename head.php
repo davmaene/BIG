@@ -89,7 +89,7 @@
             }
 
             return array(
-                "solde" => $montantdu - $montantpayer,
+                "solde" => (int) $montantdu - (int) $montantpayer,
                 "table" => $Credit->body
             );
         }
