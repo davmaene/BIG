@@ -52,9 +52,6 @@ if($_GET['curl']){
                 $montd = $b->montantdu - $_POST['montant'];
                 $montp = $b->montantpaye + $_POST['montant'];
 
-                echo($montd);
-                echo("<br/>");
-                echo($montp);
                 $creditS = new Credits();
                 $creditS = $creditS->edit(
                     array(
@@ -66,7 +63,7 @@ if($_GET['curl']){
                         "montantpaye" => $montp
                     )
                 );
-                // echo($creditS->print());
+                echo($creditS->print());
             }else{
                 $res = new Response(404, "le numéro du membre est erroné !");
                 echo($res->print());
