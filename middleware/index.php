@@ -39,6 +39,13 @@ $date = date("d/m/Y, H:i:s");
 if($_GET['curl']){
     $curl = $_GET['curl'];
     switch ($curl) {
+        case 'adduser':
+            $admin = new Admins();
+            $admin->__constructor(null, $_POST['nom'], $_POST['postnom'], md5($_POST['password']), $_POST['phone']);
+            $admin = $admin->save();
+
+            echo($admin->print());
+            break;
         case 'rembourssement':
             $credit = new Credits();
 
