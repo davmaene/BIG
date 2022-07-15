@@ -86,4 +86,5 @@
       </div>
     </div>
   </div>
+  <?php include("components/bottombutton.php") ?>
 </div>
