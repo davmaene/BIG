@@ -4,45 +4,41 @@
         border-color: #e91e63;
         box-shadow: 0 3px 3px 0 rgba(233, 30, 99, 0.15), 0 3px 1px -2px rgba(233, 30, 99, 0.2), 0 1px 5px 0 rgba(233, 30, 99, 0.15); 
     }
+
 </style>
-<?php 
-    // $credits = getSoldeCredit("montantdu");
-    // $creditsolde = $credits['solde'];
-    // $creditTable = $credits['table'];
-?>
 
 <div class="container-fluid py-4">
-  <div class="row">
-    <div class="col-12">
-      <div class="card my-4">
-        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-          <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-            <h6 class="text-white text-capitalize ps-3">Liste de présence | Date ( <?= date("d-m-Y") ?> ) </h6>
-          </div>
-        </div>
-        <div class="card-body px-0 pb-2">
-          <div class="col-lg-12" id="output"></div>
-          <div class="table-responsive p-0">
-            <table class="table align-items-center mb-0 table-striped table-bordered">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Membre</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Numéro du carnet</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Numéro de téléphone</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Membre depuis</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Etat du membre</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                </tr>
-              </thead>
-              <tbody id="tbody">
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3">Liste de présence | Date ( <?= date("d-m-Y") ?> ) </h6>
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                    <div class="col-lg-12" id="output"></div>
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0 table-striped table-bordered">
+                        <thead>
+                            <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Membre</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Numéro du carnet</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Numéro de téléphone</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Membre depuis</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Etat du membre</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
 
-              </tbody>
-            </table>
-          </div>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
   <?php include("components/bottombutton.php") ?>
 </div>
 <script>
@@ -57,7 +53,7 @@
                 </div>
             `
         )
-    }
+    };
 
     $(document).ready(() => {
         $.ajax({
@@ -75,7 +71,7 @@
                         pts.forEach(mmb => {
                             $("#tbody").append(
                                 `
-                                    <tr>
+                                    <tr id="line-${mmb['id']}" class="">
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div class="d-flex flex-column justify-content-center">
@@ -116,27 +112,28 @@
                                                     <div class="modal-content">
                                                         <form action="#" id="ondeleteoperation${mmb['id']}" tag="ondeleteoperation">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalCenterTitle">Suppression d'une opération</h5>
+                                                                <h5 class="modal-title" id="exampleModalCenterTitle">Marquer comme absent</h5>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <p>Vous ête sur le point de supprimer une opération; cette requête est ireversible</p>
-                                                                <p>Operation ID : <strong>${mmb['comptorident']}></strong></p>
-                                                                <p>Montant : <strong>${mmb['amount']}>$</strong></p>
-                                                                <p>Num clinet : <strong>${mmb['phonenumber']}></strong></p>
-                                                                    <input type="text" name="motif" value="">
+                                                                <p>Vous ête sur le point de marque ce membre comme absent</p>
+                                                                <p class="text-uppercase">Nom du client : <strong>${mmb['nom']} ${mmb['postnom']}</strong></p>
+                                                                <p class="text-uppercase">Numéro du client : <strong>${mmb['id']}</strong></p>
+                                                                <div class="input-group input-group-outline my-3">
+                                                                    <textarea placeholder="Motif de l'absence" type="text" name="valeupart" class="form-control" required></textarea>
+                                                                </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <div class="btn btn-group w-100">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss---="modal">
                                                                         <span class="fa fa-close pr-1"></span>
-                                                                        Annuler
+                                                                        Marquer comme absent
                                                                     </button>
                                                                     <button type="submit" class="btn btn-primary" btn-del="exampleModalCenter-${mmb['id']}">
                                                                         <span class="fa fa-trash pr-1"></span>
-                                                                        <span>Supprimer quand même</span>
+                                                                        <span>Justifier absence</span>
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -175,6 +172,16 @@
             $("#loader-sp").remove()
             toastr.error('Une erreur vient de se produire ! Veuillez réessayer plus tard');
             console.log("Error => ",err);
+        })
+
+        // on justify absence
+
+        $.each($("[tag=ondeleteoperation]"), (index, ele) => {
+            $(ele).on("submit", (e) => {
+                e.preventDefault();
+
+                alert(1)
+            })
         })
     });
 </script>
